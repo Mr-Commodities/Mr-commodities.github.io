@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackhouse Games – Live Edition</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+      color: #f1f1f1;
+      text-align: center;
+      min-height: 100vh;
+    }
+    
+    header {
+      padding: 15px 0;
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    footer {
+      padding: 20px 0;
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    
+    button, .button {
+      background: linear-gradient(135deg, #333 0%, #444 50%, #333 100%);
+      color: #fff;
+      border: 2px solid #555;
+      padding: 12px 20px;
+      margin: 4px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1);
+      transition: all 0.2s ease;
+    }
+    
+    button:hover, .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.2);
+      background: linear-gradient(135deg, #4a9eff 0%, #5aa7ff 50%, #4a9eff 100%);
+    }
+    
+    button:active, .button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    #adminBtn {
+      background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 50%, #ff6b35 100%);
+      display: block;
+      margin: 20px auto;
+      font-size: 1.1rem;
+      padding: 15px 30px;
+    }
+    
+    .donation-display {
+      background: linear-gradient(135deg, #2a5f2a 0%, #3a7f3a 100%);
+      padding: 10px 20px;
+      margin: 15px auto;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      border: 2px solid #4a9f4a;
+    }
+    
+    .donation-amount {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .wallet-address {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 5px;
+      word-break: break-all;
+      font-family: monospace;
+    }
+    
+    .tabs {
+      margin: 20px 0;
+    }
+    
+    .tab-panel {
+      display: none;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      margin: 0 auto 20px auto;
+      padding: 20px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      text-align: left;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    .last-winners-section {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    
+    .last-winners-section h3 {
+      margin: 0 0 15px 0;
+      font-size: 1.4rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .last-winners-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    
+    .winner-box {
+      background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%);
+      border: 2px solid #ffd700;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: all 0.2s ease;
+    }
+    
+    .winner-number {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffd700;
+      margin-bottom: 5px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    .box {
+      background: linear-gradient(135deg, #444 0%, #555 50%, #444 100%);
+      color: #fff;
+      padding: 20px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      border: 2px solid #666;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1);
+      transition: all 0.2s ease;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, #4a9eff 0%, #5aa7ff 50%, #4a9eff 100%);
+    }
+    
+    .box.pending {
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4a 50%, #ffd700 100%);
+      color: #000;
+      border-color: #ffed4a;
+      animation: pulse 2s infinite;
+    }
+    
+    .box.confirmed {
+      background: linear-gradient(135deg, #28a745 0%, #34ce57 50%, #28a745 100%);
+      color: #fff;
+      border-color: #34ce57;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 0 rgba(255, 215, 0, 0.7); }
+      70% { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 10px rgba(255, 215, 0, 0); }
+      100% { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 0 rgba(255, 215, 0, 0); }
+    }
+    
+    .timer {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      font-weight: normal;
+    }
+    
+    .connection-status {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: #28a745;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      z-index: 1000;
+    }
+    
+    .sync-status {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      z-index: 1000;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      border: 2px solid #444;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .modal input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 2px solid #444;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .modal input:focus {
+      outline: none;
+      border-color: #4a9eff;
+      box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        padding: 0 10px;
+      }
+      
+      .box {
+        padding: 15px 5px;
+        min-height: 70px;
+        font-size: 0.9rem;
+      }
+      
+      header h1 {
+        font-size: 1.4rem;
+      }
+      
+      .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+      }
+      
+      .last-winners-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="connection-status" id="connectionStatus">🟢 Online</div>
+  <div class="sync-status" id="syncStatus">🕒 Syncing...</div>
+  
+  <header>
+    <h1>🎮 Stackhouse Games – Live Edition</h1>
+  </header>
+  
+  <div class="donation-display">
+    <div class="donation-amount">Entry Fee: $<span id="donationAmount">5.00</span> USD</div>
+    <div class="wallet-address">📍 <span id="walletDisplay">ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x</span></div>
+  </div>
+  
+  <nav class="tabs">
+    <button class="tab-btn" onclick="toggleTab('wallet')">💼 Get Wallet</button>
+    <button class="tab-btn" onclick="toggleTab('howto')">🎮 How-To Play</button>
+    <button class="tab-btn" onclick="toggleTab('faq')">❓ FAQ & Rules</button>
+  </nav>
+  
+  <section id="wallet" class="tab-panel">
+    <h3>💼 Step 1: Get a Wallet</h3>
+    <p>To join our game and receive digital gifts, you'll need a crypto wallet that supports <strong>Litecoin (LTC)</strong>.</p>
+    
+    <h4>📱 Recommended Wallets:</h4>
+    <ul>
+      <li><strong>Trust Wallet</strong> – Mobile only. Fast, simple, and supports LTC</li>
+      <li><strong>Exodus Wallet</strong> – Mobile/Desktop. User-friendly and reliable</li>
+    </ul>
+    
+    <h4>⚠️ Important Warnings:</h4>
+    <p><strong>Do NOT send from crypto exchanges like Robinhood, Venmo, or PayPal BTC</strong> — they may not support withdrawals to LTC addresses.</p>
+    <p><strong>Make sure you can send out and receive LTC.</strong></p>
+    
+    <h4>🌐 Why We Use Crypto:</h4>
+    <p><strong>Traditional online gaming platforms come with frustrating limitations that crypto eliminates:</strong></p>
+    <ul>
+      <li>No frozen accounts or "under review" delays</li>
+      <li>No arbitrary limits on sending or receiving</li>
+      <li>No confusion about processing times or hidden fees</li>
+      <li>No middlemen — your donation goes direct</li>
+      <li>More privacy and total transparency</li>
+    </ul>
+    
+    <h4>Why Litecoin Specifically?</h4>
+    <ul>
+      <li>✅ Extremely low fees (often less than $0.01)</li>
+      <li>⚡ Fast confirmation (around 2.5 minutes)</li>
+      <li>🔐 Reliable and secure since 2011</li>
+      <li>🌍 Easy to access with most major wallets</li>
+    </ul>
+  </section>
+  
+  <section id="howto" class="tab-panel">
+    <h3>🎮 Step 2: How to Play</h3>
+    
+    <h4>📋 Step-by-Step Process:</h4>
+    <ol>
+      <li><strong>Pick a Row:</strong> Click an available (gray) row to claim it.</li>
+      <li><strong>Enter Name:</strong> This will show on the live stream for fun & visibility.</li>
+      <li><strong>Send Donation:</strong> Follow instructions on the screen to send the LTC amount.</li>
+      <li><strong>Row Turns Green:</strong> That means your gift is locked in and ready!</li>
+      <li><strong>Join the Live:</strong> Hang tight and see if your row hits. 💥</li>
+    </ol>
+    
+    <h4>⏳ Important Timing Info:</h4>
+    <p><strong>Time Limit:</strong> Each row is held for 10 minutes. If no LTC is received by then, the row becomes available again.</p>
+    
+    <h4>💰 Getting Your Cash:</h4>
+    <p>When you win, swap your LTC on:</p>
+    <ul>
+      <li>Cash App (convert to BTC first, then to USD)</li>
+      <li>Exodus wallet (built-in exchange)</li>
+      <li>Local crypto ATMs</li>
+      <li>Coinbase or other major exchanges</li>
+    </ul>
+  </section>
+  
+  <section id="faq" class="tab-panel">
+    <h3>❓ Frequently Asked Questions</h3>
+    
+    <h4>🕐 Timing Questions:</h4>
+    <p><strong>What if my LTC is late?</strong><br>
+    If your row unlocks but your LTC still comes through, just send your transaction ID. If it checks out, we'll manually re-assign your spot or include you in the next gift drop.</p>
+    
+    <p><strong>How fast are Litecoin confirmations?</strong><br>
+    Litecoin typically confirms in 2-5 minutes, much faster than Bitcoin.</p>
+    
+    <h4>🎯 Gameplay Questions:</h4>
+    <p><strong>Can I claim more than one row?</strong><br>
+    Yes, if they're available. But each row has its own timer and donation—you can't "hold" rows without sending LTC.</p>
+    
+    <p><strong>What happens if there are technical issues?</strong><br>
+    We reserve the right to pause or rerun games in case of technical issues. Your LTC will always be safe.</p>
+    
+    <h4>📜 Community Game Rules:</h4>
+    <ul>
+      <li>Always double-check the wallet address before sending</li>
+      <li>Do NOT send from exchanges without withdrawal capability</li>
+      <li>One row per name unless special rules apply that day</li>
+      <li>Be respectful - mods and hosts are here to make it fun for everyone</li>
+      <li>This is a community-powered gift experience - we appreciate you supporting us!</li>
+    </ul>
+    
+    <h4>🔧 Technical Questions:</h4>
+    <p><strong>Why can't I use Robinhood/Venmo/PayPal?</strong><br>
+    These platforms often don't allow you to send crypto to external addresses, or they don't support Litecoin withdrawals.</p>
+    
+    <p><strong>What if I sent from the wrong type of wallet?</strong><br>
+    Contact us immediately with your transaction details. We'll do our best to help, but prevention is always better!</p>
+  </section>
+  
+  <!-- What Hit Last Section -->
+  <div class="last-winners-section">
+    <h3>🏆 What Hit Last</h3>
+    <div class="last-winners-grid">
+      <div class="winner-box" id="winner1">
+        <div class="winner-number">Row 1</div>
+      </div>
+      <div class="winner-box" id="winner2">
+        <div class="winner-number">Row 7</div>
+      </div>
+      <div class="winner-box" id="winner3">
+        <div class="winner-number">Row 12</div>
+      </div>
+    </div>
+  </div>
+  
+  <main>
+    <div id="tracker" class="grid"></div>
+    <button id="adminBtn" onclick="openAdminPanel()">🔧 Admin Panel</button>
+  </main>
+  
+  <footer>
+    © 2025 Stackhouse Games | 🔴 Live System | Players Online: <span id="onlineCount">1</span>
+  </footer>
+  
+  <!-- Nickname Modal -->
+  <div id="nicknameModal" class="modal">
+    <div class="modal-content">
+      <h2>🎮 Claim Row <span id="modalRowNumber"></span></h2>
+      <p>Enter your nickname to claim this row:</p>
+      <input type="text" id="nicknameInput" placeholder="Enter nickname..." maxlength="20" autocomplete="off">
+      <div style="margin-top: 20px;">
+        <button onclick="confirmClaim()">🚀 Claim Row</button>
+        <button onclick="closeModal()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Instructions Modal -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content" style="background: linear-gradient(135deg, #1a4a1a 0%, #2a6a2a 100%); border: 2px solid #4a9f4a;">
+      <h2>💰 Payment Instructions</h2>
+      <p><strong><span id="paymentNickname">Player</span></strong>, you've claimed <strong>Row <span id="paymentRowNumber">1</span></strong>!</p>
+      
+      <div style="background: #333; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        <p style="margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700;"><strong>Send exactly:</strong></p>
+        <p style="margin: 0 0 15px 0; font-size: 1.4rem; font-weight: bold;">$<span id="paymentAmountUSD">5.01</span> USD</p>
+        
+        <p style="margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700;"><strong>To this address:</strong></p>
+        <p style="margin: 0; font-family: monospace; font-size: 0.9rem; word-break: break-all; background: #222; padding: 10px; border-radius: 4px;" id="paymentWallet">ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x</p>
+      </div>
+      
+      <div style="background: #2a2a2a; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ffd700;">
+        <p style="margin: 0; font-size: 0.9rem;"><strong>⚠️ Important:</strong> Stay on this device/network until your row turns green.</p>
+      </div>
+      
+      <div style="margin-top: 20px;">
+        <button onclick="closePaymentModal()">👍 Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="adminModal" class="modal">
+    <div class="modal-content" style="background: linear-gradient(135deg, #2a1a1a 0%, #3a2a2a 100%); border: 2px solid #ff6b35; max-height: 80vh; overflow-y: auto;">
+      <h2>🔧 Admin Panel</h2>
+      
+      <div style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Entry Fee ($):</label>
+        <input type="number" id="adminFee" step="1" min="1" value="5">
+      </div>
+      
+      <div style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Wallet Address:</label>
+        <input type="text" id="adminWallet" value="ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x" style="font-family: monospace; font-size: 0.9rem;">
+      </div>
+      
+      <div style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Timer (minutes):</label>
+        <select id="adminTimer">
+          <option value="5">5 minutes</option>
+          <option value="10" selected>10 minutes</option>
+          <option value="15">15 minutes</option>
+        </select>
+      </div>
+      
+      <!-- Last Winners Admin Section -->
+      <div style="margin: 20px 0; padding: 15px; background: #444; border-radius: 8px;">
+        <h4 style="margin: 0 0 15px 0; color: #ffd700;">🏆 Update Last Winners</h4>
+        
+        <div style="margin: 10px 0;">
+          <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Winner 1:</label>
+          <input type="number" id="winner1Row" placeholder="Row #" min="1" max="15" value="1" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; text-align: center;">
+        </div>
+        
+        <div style="margin: 10px 0;">
+          <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Winner 2:</label>
+          <input type="number" id="winner2Row" placeholder="Row #" min="1" max="15" value="7" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; text-align: center;">
+        </div>
+        
+        <div style="margin: 10px 0;">
+          <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Winner 3:</label>
+          <input type="number" id="winner3Row" placeholder="Row #" min="1" max="15" value="12" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; text-align: center;">
+        </div>
+        
+        <button onclick="updateWinners()">🏆 Update Winners</button>
+      </div>
+      
+      <div style="margin-top: 20px;">
+        <button onclick="updateGlobalSettings()">💰 Update Settings (All Devices)</button>
+        <button onclick="manualConfirmRow()">✅ Manual Confirm Row</button>
+        <button onclick="resetAllRows()">🔄 Reset Game</button>
+        <button onclick="closeAdminModal()">❌ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multiple Firebase CDN fallbacks -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  <script>
+    // 🕒 TIMER SYNC VARIABLES
+    let serverTimeOffset = 0;
+    let ltcPrice = 88; // Fallback price
+
+    // 🎮 GAME STATE
+    let gameData = {
+      rows: {},
+      donationAmount: 5,
+      walletAddress: 'ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x',
+      timerMinutes: 10,
+      lastWinners: [
+        { row: '1' },
+        { row: '7' },
+        { row: '12' }
+      ]
+    };
+    
+    let currentRowBeingClaimed = null;
+    let activeTimers = new Map();
+    let isAdmin = false;
+    const adminPass = 'admin123';
+
+    // 🚀 FIREBASE INITIALIZATION
+    function initializeFirebase() {
+      try {
+        const firebaseConfig = {
+          apiKey: "AIzaSyBbZkTQUGeKkuhy3Q8B8xvb7aSAgKwpV2o",
+          authDomain: "stackhouse-gaming.firebaseapp.com",
+          databaseURL: "https://stackhouse-gaming-default-rtdb.firebaseio.com",
+          projectId: "stackhouse-gaming",
+          storageBucket: "stackhouse-gaming.appspot.com",
+          messagingSenderId: "302478753290",
+          appId: "1:302478753290:web:efc93e1bf33c401c3229f3",
+          measurementId: "G-6K2HJ7RB6W"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        window.database = firebase.database();
+        
+        // Get server time offset for perfect sync
+        firebase.database().ref(".info/serverTimeOffset").on("value", snap => {
+          serverTimeOffset = snap.val() || 0;
+          console.log("🕒 Server time offset:", serverTimeOffset);
+          updateSyncStatus();
+        });
+        
+        console.log('✅ Firebase fully initialized with sync');
+        window.hasFirebase = true;
+        startGameWithFirebase();
+      } catch (error) {
+        console.error('❌ Firebase initialization failed:', error);
+        startGameWithoutFirebase();
+      }
+    }
+
+    function startGameWithFirebase() {
+      console.log('🚀 Starting game WITH Firebase sync');
+      window.hasFirebase = true;
+      initGame();
+    }
+
+    function startGameWithoutFirebase() {
+      console.log('🚀 Starting game WITHOUT Firebase (local mode)');
+      window.hasFirebase = false;
+      window.database = null;
+      updateSyncStatus(false);
+      initGame();
+    }
+
+    function updateSyncStatus(online = true) {
+      const syncStatus = document.getElementById('syncStatus');
+      if (online && serverTimeOffset !== undefined) {
+        syncStatus.textContent = '🕒 Synced';
+        syncStatus.style.background = '#28a745';
+      } else if (online) {
+        syncStatus.textContent = '🕒 Syncing...';
+        syncStatus.style.background = '#007bff';
+      } else {
+        syncStatus.textContent = '🕒 Local Mode';
+        syncStatus.style.background = '#dc3545';
+      }
+    }
+
+    // 💰 GET LIVE LTC PRICE
+    async function updateLTCPrice() {
+      try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=litecoin&vs_currencies=usd');
+        const data = await response.json();
+        ltcPrice = data.litecoin.usd;
+        console.log('💰 Updated LTC price:', ltcPrice);
+      } catch (error) {
+        console.log('⚠️ Price API failed, using fallback: $' + ltcPrice);
+      }
+    }
+
+    // 🚀 GAME INITIALIZATION
+    function initGame() {
+      console.log('🎮 Starting game initialization...');
+      
+      loadGlobalSettings();
+      buildGrid();
+      updateDisplay();
+      updateLTCPrice(); // Get current LTC price
+      
+      // Update price every 5 minutes
+      setInterval(updateLTCPrice, 5 * 60 * 1000);
+      
+      // Listen for Firebase updates
+      if (window.hasFirebase && database) {
+        // Global settings sync
+        database.ref('globalSettings').on('value', (snapshot) => {
+          const settings = snapshot.val();
+          if (settings) {
+            console.log('🌐 Global settings updated:', settings);
+            gameData.donationAmount = settings.donationAmount || 5;
+            gameData.walletAddress = settings.walletAddress || gameData.walletAddress;
+            gameData.timerMinutes = settings.timerMinutes || 10;
+            gameData.lastWinners = settings.lastWinners || gameData.lastWinners;
+            updateDisplayFromGlobal();
+          }
+        });
+
+        // WEBHOOK-READY: Real-time row sync (no polling needed!)
+        database.ref('gameRows').on('value', (snapshot) => {
+          const rows = snapshot.val() || {};
+          console.log('🎮 Rows updated from Firebase:', rows);
+          
+          // Merge Firebase rows
+          gameData.rows = rows;
+          updateDisplay();
+          
+          // Restart timers for pending rows
+          for (const [rowNum, rowData] of Object.entries(rows)) {
+            if (rowData.status === 'pending' && rowData.expiresAt) {
+              const box = document.getElementById(`row${rowNum}`);
+              if (box) {
+                startSyncedCountdown(box, rowNum, rowData.expiresAt);
+              }
+            }
+          }
+        });
+      }
+      
+      console.log('✅ Game initialization complete');
+    }
+
+    // 🌐 FIREBASE FUNCTIONS
+    function loadGlobalSettings() {
+      if (!window.hasFirebase || !database) return;
+      
+      database.ref('globalSettings').once('value', (snapshot) => {
+        const settings = snapshot.val();
+        if (settings) {
+          gameData.donationAmount = settings.donationAmount || 5;
+          gameData.walletAddress = settings.walletAddress || gameData.walletAddress;
+          gameData.timerMinutes = settings.timerMinutes || 10;
+          gameData.lastWinners = settings.lastWinners || gameData.lastWinners;
+          console.log('✅ Loaded global settings:', settings);
+        }
+      });
+    }
+
+    function saveGlobalSettings() {
+      if (!isAdmin || !window.hasFirebase || !database) return;
+      
+      const settings = {
+        donationAmount: gameData.donationAmount,
+        walletAddress: gameData.walletAddress,
+        timerMinutes: gameData.timerMinutes,
+        lastWinners: gameData.lastWinners,
+        lastUpdated: Date.now()
+      };
+      
+      database.ref('globalSettings').set(settings)
+        .then(() => console.log('✅ Global settings saved'))
+        .catch((error) => console.error('❌ Error saving settings:', error));
+    }
+
+    function saveGameRows() {
+      if (!window.hasFirebase || !database) return;
+      
+      database.ref('gameRows').set(gameData.rows)
+        .then(() => console.log('✅ Game rows synced'))
+        .catch((error) => console.error('❌ Error syncing rows:', error));
+    }
+
+    function updateDisplayFromGlobal() {
+      document.getElementById('donationAmount').textContent = gameData.donationAmount.toFixed(2);
+      document.getElementById('walletDisplay').textContent = gameData.walletAddress;
+      updateLastWinners();
+    }
+
+    // 🎯 GRID & DISPLAY
+    function buildGrid() {
+      const tracker = document.getElementById('tracker');
+      tracker.innerHTML = '';
+      
+      for (let i = 1; i <= 15; i++) {
+        const div = document.createElement('div');
+        div.className = 'box';
+        div.id = `row${i}`;
+        div.innerHTML = `
+          <div>Row ${i}</div>
+          <div class="timer"></div>
+        `;
+        div.addEventListener('click', () => claimRow(i));
+        tracker.appendChild(div);
+      }
+    }
+
+    function updateDisplay() {
+      for (let i = 1; i <= 15; i++) {
+        const box = document.getElementById(`row${i}`);
+        const rowData = gameData.rows[i];
+        
+        if (rowData) {
+          updateRowDisplay(box, i, rowData);
+        } else {
+          resetRowDisplay(box, i);
+        }
+      }
+      
+      updateLastWinners();
+      updateOnlineCount();
+      document.getElementById('donationAmount').textContent = gameData.donationAmount.toFixed(2);
+      document.getElementById('walletDisplay').textContent = gameData.walletAddress;
+    }
+
+    function updateRowDisplay(box, rowNum, rowData) {
+      box.className = `box ${rowData.status}`;
+      const nickname = rowData.nickname || 'Anonymous';
+      const truncatedNickname = nickname.length > 10 ? nickname.substring(0, 10) + '...' : nickname;
+      
+      box.innerHTML = `
+        <div>Row ${rowNum}</div>
+        <div style="font-size: 0.8rem; margin-top: 2px;">${truncatedNickname}</div>
+        <div class="timer"></div>
+      `;
+    }
+
+    function resetRowDisplay(box, rowNum) {
+      box.className = 'box';
+      box.innerHTML = `
+        <div>Row ${rowNum}</div>
+        <div class="timer"></div>
+      `;
+    }
+
+    function updateLastWinners() {
+      for (let i = 0; i < 3; i++) {
+        const winnerBox = document.getElementById(`winner${i + 1}`);
+        if (winnerBox && gameData.lastWinners[i]) {
+          const winner = gameData.lastWinners[i];
+          winnerBox.querySelector('.winner-number').textContent = `Row ${winner.row}`;
+        }
+      }
+    }
+
+    function updateOnlineCount() {
+      const activePlayers = Object.keys(gameData.rows).length;
+      document.getElementById('onlineCount').textContent = Math.max(1, activePlayers);
+    }
+
+    // ⏱️ SYNCED TIMER FUNCTIONS - SURGICAL FIX #1: Protect confirmed rows
+    function startSyncedCountdown(box, rowNum, expiresAt) {
+      const timerEl = box.querySelector('.timer');
+      if (!timerEl) return;
+
+      // Clear any existing timer
+      if (activeTimers.has(rowNum)) {
+        cancelAnimationFrame(activeTimers.get(rowNum));
+      }
+
+      const countdown = () => {
+        // Use server-synced time instead of local time
+        const now = Date.now() + serverTimeOffset;
+        const diff = expiresAt - now;
+        
+        if (diff <= 0) {
+          // SURGICAL FIX #1: Don't expire confirmed rows!
+          if (gameData.rows[rowNum]?.status === 'confirmed') {
+            timerEl.textContent = "";
+            activeTimers.delete(rowNum);
+            return; // Keep confirmed rows confirmed
+          }
+          
+          // Only expire if still pending
+          timerEl.textContent = "00:00";
+          activeTimers.delete(rowNum);
+          expireRow(rowNum);
+          return;
+        }
+        
+        const minutes = String(Math.floor(diff / 60000)).padStart(2, '0');
+        const seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        timerEl.textContent = `${minutes}:${seconds}`;
+        
+        // Use requestAnimationFrame for smooth updates
+        const animationId = requestAnimationFrame(countdown);
+        activeTimers.set(rowNum, animationId);
+      };
+      
+      countdown();
+    }
+
+    function expireRow(rowNum) {
+      delete gameData.rows[rowNum];
+      saveGameRows();
+      updateDisplay();
+      console.log(`⏰ Row ${rowNum} expired`);
+    }
+
+    // 🎮 ROW CLAIMING WITH LTC CONVERSION
+    function claimRow(rowNum) {
+      const box = document.getElementById(`row${rowNum}`);
+      if (box.classList.contains('confirmed') || box.classList.contains('pending')) {
+        return;
+      }
+
+      currentRowBeingClaimed = rowNum;
+      document.getElementById('modalRowNumber').textContent = rowNum;
+      document.getElementById('nicknameInput').value = '';
+      document.getElementById('nicknameModal').style.display = 'block';
+      
+      setTimeout(() => {
+        document.getElementById('nicknameInput').focus();
+      }, 100);
+    }
+
+    function confirmClaim() {
+      const nickname = document.getElementById('nicknameInput').value.trim();
+      if (!nickname || !currentRowBeingClaimed) return;
+
+      // Use server-synced time for claim timestamp and expiration
+      const serverNow = Date.now() + serverTimeOffset;
+      const expiresAt = serverNow + (gameData.timerMinutes * 60 * 1000);
+      
+      // SURGICAL FIX #2: Standardize field names for backend compatibility
+      const donationAmountUSD = gameData.donationAmount + parseInt(currentRowBeingClaimed) * 0.01;
+      const expectedLTC = donationAmountUSD / ltcPrice;
+      const toleranceLTC = 0.50 / ltcPrice; // $0.50 tolerance in LTC
+      
+      // Get user IP for matching
+      let userIP = 'unknown';
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          userIP = data.ip;
+          if (gameData.rows[currentRowBeingClaimed]) {
+            gameData.rows[currentRowBeingClaimed].userIP = userIP;
+            saveGameRows();
+          }
+        })
+        .catch(() => {
+          userIP = 'unknown';
+        });
+      
+      gameData.rows[currentRowBeingClaimed] = {
+        nickname: nickname,
+        status: 'pending',
+        claimedAt: serverNow,
+        expiresAt: expiresAt,
+        donationAmountUSD: donationAmountUSD,
+        expectedLTC: expectedLTC,
+        toleranceLTC: toleranceLTC,
+        claimTimestamp: serverNow, // SURGICAL FIX #2: Backend looks for this field
+        userIP: userIP,
+        baseEntryFee: gameData.donationAmount // SURGICAL FIX #2: Backend needs this
+      };
+
+      closeModal();
+      showPaymentInstructions(currentRowBeingClaimed, nickname);
+      saveGameRows();
+      updateDisplay();
+      
+      console.log(`🎮 Row ${currentRowBeingClaimed} claimed by ${nickname} (${donationAmountUSD} USD = ${expectedLTC.toFixed(8)} LTC)`);
+    }
+
+    function closeModal() {
+      document.getElementById('nicknameModal').style.display = 'none';
+    }
+
+    function showPaymentInstructions(rowNumber, nickname) {
+      const rowData = gameData.rows[rowNumber];
+      const amountUSD = rowData?.donationAmountUSD || gameData.donationAmount;
+      
+      document.getElementById('paymentNickname').textContent = nickname;
+      document.getElementById('paymentRowNumber').textContent = rowNumber;
+      document.getElementById('paymentAmountUSD').textContent = amountUSD.toFixed(2);
+      document.getElementById('paymentWallet').textContent = gameData.walletAddress;
+      
+      document.getElementById('paymentModal').style.display = 'block';
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+      currentRowBeingClaimed = null;
+    }
+
+    // WEBHOOK-READY: No polling needed! Firebase will update when webhook processes payments
+    
+    function showTransactionConfirmation(rowNumber, txHash) {
+      const message = `🎉 Row ${rowNumber} confirmed! TX: ${txHash.substring(0, 10)}...`;
+      
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 3000;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        border: 2px solid #34ce57;
+      `;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        if (document.body.contains(notification)) {
+          document.body.removeChild(notification);
+        }
+      }, 4000);
+      
+      console.log('🎉', message);
+    }
+
+    // 🔧 ADMIN FUNCTIONS
+    function toggleTab(tabId) {
+      const panel = document.getElementById(tabId);
+      const isVisible = panel.style.display === 'block';
+      
+      document.querySelectorAll('.tab-panel').forEach(p => {
+        p.style.display = 'none';
+      });
+      
+      if (!isVisible) {
+        panel.style.display = 'block';
+      }
+    }
+
+    function openAdminPanel() {
+      // Skip password for testing - you can add it back later
+      isAdmin = true;
+      document.getElementById('adminFee').value = gameData.donationAmount;
+      document.getElementById('adminWallet').value = gameData.walletAddress;
+      document.getElementById('adminTimer').value = gameData.timerMinutes;
+      
+      for (let i = 0; i < 3; i++) {
+        const winner = gameData.lastWinners[i];
+        document.getElementById(`winner${i + 1}Row`).value = winner.row;
+      }
+      
+      document.getElementById('adminModal').style.display = 'block';
+    }
+
+    function updateGlobalSettings() {
+      if (!isAdmin) return;
+      
+      const newAmount = parseFloat(document.getElementById('adminFee').value);
+      const newWallet = document.getElementById('adminWallet').value.trim();
+      const newTimer = parseInt(document.getElementById('adminTimer').value);
+      
+      if (newAmount >= 1) {
+        gameData.donationAmount = newAmount;
+      }
+      
+      if (newWallet) {
+        gameData.walletAddress = newWallet;
+      }
+      
+      gameData.timerMinutes = newTimer;
+      
+      saveGlobalSettings();
+      alert('Settings updated for ALL devices!');
+    }
+
+    function updateWinners() {
+      if (!isAdmin) return;
+      
+      for (let i = 0; i < 3; i++) {
+        const rowInput = document.getElementById(`winner${i + 1}Row`);
+        gameData.lastWinners[i] = {
+          row: rowInput.value || (i + 1)
+        };
+      }
+      
+      saveGlobalSettings();
+      updateDisplay();
+      alert('Winners updated for all devices!');
+    }
+
+    function manualConfirmRow() {
+      if (!isAdmin) return;
+      
+      const rowNum = prompt('Enter row number to confirm (1-15):');
+      if (rowNum && gameData.rows[rowNum] && gameData.rows[rowNum].status === 'pending') {
+        gameData.rows[rowNum].status = 'confirmed';
+        gameData.rows[rowNum].confirmedAt = Date.now() + serverTimeOffset;
+        saveGameRows();
+        updateDisplay();
+        alert(`Row ${rowNum} manually confirmed!`);
+      } else {
+        alert('Invalid row number or row not pending');
+      }
+    }
+
+    function resetAllRows() {
+      if (!isAdmin) return;
+      
+      if (confirm('Reset entire game? This will clear all rows.')) {
+        gameData.rows = {};
+        
+        // Clear all active timers
+        activeTimers.forEach(animationId => cancelAnimationFrame(animationId));
+        activeTimers.clear();
+        
+        saveGameRows();
+        updateDisplay();
+        alert('Game reset complete!');
+      }
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').style.display = 'none';
+    }
+
+    // 🎯 EVENT LISTENERS
+    document.getElementById('nicknameInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        confirmClaim();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+        if (e.target.id === 'nicknameModal') {
+          currentRowBeingClaimed = null;
+        }
+      }
+    });
+
+    // 🚀 START THE GAME
+    window.addEventListener('load', () => {
+      if (typeof firebase !== 'undefined') {
+        initializeFirebase();
+      } else {
+        console.log('Firebase not loaded, starting in local mode');
+        startGameWithoutFirebase();
+      }
+    });
+    
+    console.log('🎮 Stackhouse Games - WEBHOOK READY!');
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+const functions = require("firebase-functions");
+const axios = require("axios");
+
+exports.checkLitecoinTransactions = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'POST');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).send('');
+  }
+
+  const { walletAddress, amount, claimTimestamp } = req.body;
+  console.log('🕒 Claim timestamp received:', claimTimestamp);
+
+
+  if (!walletAddress || !amount || !claimTimestamp) {
+    return res.status(400).json({ error: "Missing walletAddress, amount, or claimTimestamp." });
+  }
+
+  try {
+    const url = `https://api.blockcypher.com/v1/ltc/main/addrs/${walletAddress}/full?limit=10`;
+    const response = await axios.get(url);
+
+    console.log('🔗 BlockCypher response:', JSON.stringify(response.data, null, 2));
+
+    const transactions = response.data?.txs;
+
+    if (!transactions || transactions.length === 0) {
+      console.log('📭 No transactions found');
+      return res.status(200).json({ match: false, message: "No transactions found." });
+    }
+
+    const tolerance = 0.50;
+    const matches = [];
+    const claimTime = new Date(claimTimestamp);
+
+    for (const tx of transactions) {
+      const txTime = new Date(tx.received);
+      const outputs = tx.outputs || [];
+      const claimTime = new Date(claimTimestamp);
+      console.log('📅 Comparing txTime:', txTime, 'vs claimTime:', claimTime);
+
+
+      for (const out of outputs) {
+        if (out.addresses && out.addresses.includes(walletAddress)) {
+          const ltcAmount = out.value / 1e8;
+          const usdAmount = ltcAmount * 70;
+
+          if (txTime >= claimTime && Math.abs(usdAmount - amount) <= tolerance) {
+            matches.push({
+              hash: tx.hash,
+              timestamp: tx.received,
+              amount_usd: usdAmount.toFixed(2),
+              amount_ltc: ltcAmount
+            });
+          }
+        }
+      }
+    }
+
+    if (matches.length > 0) {
+      console.log('✅ Match found:', matches[0]);
+      return res.status(200).json({ match: true, transactions: matches });
+    } else {
+      console.log('🔍 No matching transactions');
+      return res.status(200).json({ match: false, message: "No matching transactions found." });
+    }
+  } catch (error) {
+    console.error('❌ Backend error:', error.message || error);
+    return res.status(500).json({ error: "Backend error occurred." });
+  }
+});
