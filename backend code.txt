@@ -1,73 +1,208 @@
 const functions = require("firebase-functions");
-const axios = require("axios");
+const admin = require("firebase-admin");
+const cors = require("cors")({ origin: true });
+const https = require("https");
 
-exports.checkLitecoinTransactions = functions.https.onRequest(async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'POST');
-  res.set('Access-Control-Allow-Headers', 'Content-Type');
+admin.initializeApp();
+const db = admin.firestore();
+const rtdb = admin.database();
 
-  if (req.method === 'OPTIONS') {
-    return res.status(204).send('');
-  }
+const STACKHOUSE_WALLET = "ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x";
 
-  const { walletAddress, amount, claimTimestamp } = req.body;
-  console.log('🕒 Claim timestamp received:', claimTimestamp);
+// 🔧 Modular helper to calculate expected USD amount
+function getExpectedUSD(baseEntryFee, rowNum) {
+  return baseEntryFee + parseInt(rowNum) * 0.01;
+}
 
+// 💰 Get LTC price using built-in https module
+function getLTCPrice() {
+  return new Promise((resolve) => {
+    const options = {
+      hostname: 'api.coingecko.com',
+      path: '/api/v3/simple/price?ids=litecoin&vs_currencies=usd',
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0'
+      }
+    };
 
-  if (!walletAddress || !amount || !claimTimestamp) {
-    return res.status(400).json({ error: "Missing walletAddress, amount, or claimTimestamp." });
-  }
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          resolve(parsed?.litecoin?.usd || 88);
+        } catch (err) {
+          console.log('⚠️ Price parse failed, using fallback');
+          resolve(88);
+        }
+      });
+    });
 
-  try {
-    const url = `https://api.blockcypher.com/v1/ltc/main/addrs/${walletAddress}/full?limit=10`;
-    const response = await axios.get(url);
+    req.on('error', () => {
+      console.log('⚠️ Price fetch failed, using fallback');
+      resolve(88);
+    });
 
-    console.log('🔗 BlockCypher response:', JSON.stringify(response.data, null, 2));
+    req.setTimeout(5000, () => {
+      console.log('⚠️ Price request timeout, using fallback');
+      resolve(88);
+    });
 
-    const transactions = response.data?.txs;
+    req.end();
+  });
+}
 
-    if (!transactions || transactions.length === 0) {
-      console.log('📭 No transactions found');
-      return res.status(200).json({ match: false, message: "No transactions found." });
-    }
+exports.onIncomingPayment = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      console.log('🎯 Webhook received:', JSON.stringify(req.body, null, 2));
+      
+      if (req.method !== "POST") {
+        return res.status(405).send("Method Not Allowed");
+      }
 
-    const tolerance = 0.50;
-    const matches = [];
-    const claimTime = new Date(claimTimestamp);
+      // ✅ Respond to BlockCypher immediately
+      res.status(200).send("✅ Webhook received");
 
-    for (const tx of transactions) {
-      const txTime = new Date(tx.received);
-      const outputs = tx.outputs || [];
-      const claimTime = new Date(claimTimestamp);
-      console.log('📅 Comparing txTime:', txTime, 'vs claimTime:', claimTime);
+      const { hash: txId, confirmed, outputs } = req.body;
+      if (!txId || !confirmed || !outputs) {
+        console.log("❌ Incomplete transaction payload");
+        return;
+      }
 
+      const confirmedAt = new Date(confirmed).getTime();
+      console.log(`🎯 Processing TX → ${txId} @ ${confirmedAt}`);
 
-      for (const out of outputs) {
-        if (out.addresses && out.addresses.includes(walletAddress)) {
-          const ltcAmount = out.value / 1e8;
-          const usdAmount = ltcAmount * 70;
+      // 🔍 Extract amount sent to Stackhouse wallet
+      let amountToWallet = 0;
+      let isOurWallet = false;
 
-          if (txTime >= claimTime && Math.abs(usdAmount - amount) <= tolerance) {
-            matches.push({
-              hash: tx.hash,
-              timestamp: tx.received,
-              amount_usd: usdAmount.toFixed(2),
-              amount_ltc: ltcAmount
-            });
-          }
+      for (const output of outputs) {
+        if (output.addresses && output.addresses.includes(STACKHOUSE_WALLET)) {
+          amountToWallet = output.value / 100000000; // Convert satoshis to LTC
+          isOurWallet = true;
+          console.log(`💰 Amount sent to our wallet: ${amountToWallet} LTC`);
+          break;
         }
       }
-    }
 
-    if (matches.length > 0) {
-      console.log('✅ Match found:', matches[0]);
-      return res.status(200).json({ match: true, transactions: matches });
-    } else {
-      console.log('🔍 No matching transactions');
-      return res.status(200).json({ match: false, message: "No matching transactions found." });
+      if (!isOurWallet || amountToWallet === 0) {
+        console.log("⛔ No payment found for our wallet");
+        return;
+      }
+
+      // 💸 Get current LTC price
+      const ltcPrice = await getLTCPrice();
+      console.log(`💸 Current LTC Price: $${ltcPrice}`);
+
+      const amountUSD = amountToWallet * ltcPrice;
+      console.log(`💵 Payment amount: ${amountToWallet} LTC = $${amountUSD.toFixed(2)} USD`);
+
+      // 🛡️ Prevent duplicate transactions
+      const txRef = db.collection("usedTxIds").doc(txId);
+      const txDoc = await txRef.get();
+      if (txDoc.exists) {
+        console.log(`⚠️ TX ${txId} already processed`);
+        return;
+      }
+
+      // 🧠 Pull active game rows
+      const rowsSnapshot = await rtdb.ref("gameRows").once("value");
+      const gameRows = rowsSnapshot.val() || {};
+
+      console.log(`🔍 Checking against ${Object.keys(gameRows).length} rows`);
+
+      const settingsSnapshot = await rtdb.ref("globalSettings").once("value");
+      const settings = settingsSnapshot.val() || {};
+      const baseEntryFee = settings.donationAmount || 1;
+
+      console.log(`💰 Current base entry fee: $${baseEntryFee.toFixed(2)}`);
+
+      const now = Date.now();
+      const pendingRows = Object.entries(gameRows).filter(([_, row]) => {
+        return row.status === "pending" &&
+               row.claimedAt &&
+               row.expiresAt > now;
+      });
+
+      console.log(`🎯 Found ${pendingRows.length} pending rows to check`);
+
+      if (pendingRows.length === 0) {
+        console.log("📭 No pending rows to match");
+        return;
+      }
+
+      let bestRowNum = null;
+      let bestRow = null;
+      let smallestDiff = Infinity;
+
+      for (const [rowNum, row] of pendingRows) {
+        const expectedUSD = getExpectedUSD(baseEntryFee, rowNum);
+        const timeDiff = Math.abs(confirmedAt - (row.claimedAt || row.claimTimestamp));
+        const amountDiff = Math.abs(amountUSD - expectedUSD);
+
+        console.log(`🔍 Row ${rowNum}: Expected $${expectedUSD.toFixed(2)} | Received $${amountUSD.toFixed(2)} | Diff: $${amountDiff.toFixed(2)} | Time: ${Math.round(timeDiff/1000)}s`);
+
+        const timeMatch = timeDiff <= 20 * 60 * 1000; // 20 minutes tolerance
+        const amountMatch = amountDiff <= 0.50; // $0.50 tolerance
+
+        if (timeMatch && amountMatch && amountDiff < smallestDiff) {
+          bestRowNum = rowNum;
+          bestRow = row;
+          smallestDiff = amountDiff;
+          console.log(`🎯 NEW BEST MATCH: Row ${rowNum} with diff $${amountDiff.toFixed(2)}`);
+        }
+      }
+
+      if (!bestRow || !bestRowNum) {
+        console.log(`🔍 No suitable row match found for TX: ${txId}`);
+        console.log(`💰 Payment amount: $${amountUSD.toFixed(2)} didn't match any pending rows within $0.50 tolerance`);
+        return;
+      }
+
+      console.log(`✅ Best match: Row ${bestRowNum} (diff: $${smallestDiff.toFixed(2)})`);
+
+      // ✅ Mark as confirmed
+      const rowUpdates = {
+        status: "confirmed",
+        confirmedAt: Date.now(),
+        transactionHash: txId,
+        actualAmountPaid: amountUSD,
+        actualLTCPaid: amountToWallet,
+        confirmedViaWebhook: true,
+        preventAutoExpire: true
+      };
+
+      await rtdb.ref(`gameRows/${bestRowNum}`).update(rowUpdates);
+
+      // 🗂 Log the transaction
+      await txRef.set({
+        used: true,
+        timestamp: Date.now(),
+        assignedToRow: bestRowNum,
+        amountLTC: amountToWallet,
+        amountUSD: amountUSD,
+        confirmedAt
+      });
+
+      console.log(`🎉 Row ${bestRowNum} confirmed via webhook! TXID: ${txId} | Amount: $${amountUSD.toFixed(2)}`);
+
+    } catch (error) {
+      console.error('❌ Webhook processing error:', error);
+      // Don't throw error - we already responded to BlockCypher
     }
-  } catch (error) {
-    console.error('❌ Backend error:', error.message || error);
-    return res.status(500).json({ error: "Backend error occurred." });
-  }
+  });
+});
+
+// Health check endpoint for testing
+exports.webhookHealth = functions.https.onRequest((req, res) => {
+  cors(req, res, () => {
+    res.status(200).json({
+      status: "healthy",
+      timestamp: Date.now(),
+      wallet: STACKHOUSE_WALLET
+    });
+  });
 });
