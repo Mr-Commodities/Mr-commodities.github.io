@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackhouse Games</title>
+  
+  <!-- NUCLEAR FACEBOOK FIX - These tags WILL work -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stackhousegames.vercel.app/" />
+  <meta property="og:title" content="Stackhouse Games" />
+  <meta property="og:description" content="Live gaming action with real prizes! Join the game, claim your row, and win big." />
+  <meta property="og:site_name" content="Stackhouse Games" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23121212'/%3E%3Ctext x='600' y='250' font-family='Arial Black' font-size='80' text-anchor='middle' fill='%23ffd700'%3ESTACKHOUSE GAMES%3C/text%3E%3Ctext x='600' y='320' font-family='Arial' font-size='36' text-anchor='middle' fill='%23ffffff'%3ELive Gaming Action%3C/text%3E%3Ctext x='600' y='380' font-family='Arial' font-size='48' text-anchor='middle' fill='%23ffd700'%3EWIN BIG!%3C/text%3E%3Crect x='200' y='450' width='100' height='100' fill='%23444' stroke='%23ffd700' stroke-width='3' rx='10'/%3E%3Ctext x='250' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E1%3C/text%3E%3Crect x='350' y='450' width='100' height='100' fill='%23ffd700' stroke='%23ffed4a' stroke-width='3' rx='10'/%3E%3Ctext x='400' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23000'%3E2%3C/text%3E%3Crect x='500' y='450' width='100' height='100' fill='%23444' stroke='%23ffd700' stroke-width='3' rx='10'/%3E%3Ctext x='550' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E3%3C/text%3E%3Crect x='650' y='450' width='100' height='100' fill='%2328a745' stroke='%2334ce57' stroke-width='3' rx='10'/%3E%3Ctext x='700' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E4%3C/text%3E%3Crect x='800' y='450' width='100' height='100' fill='%23444' stroke='%23ffd700' stroke-width='3' rx='10'/%3E%3Ctext x='850' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E5%3C/text%3E%3C/svg%3E" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  
+  <!-- Standard meta tags -->
+  <meta name="description" content="Live gaming action with real prizes! Join the game, claim your row, and win big." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://stackhousegames.vercel.app/" />
+  
+  <!-- Twitter tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stackhouse Games" />
+  <meta name="twitter:description" content="Live gaming action with real prizes! Join the game, claim your row, and win big." />
+  <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23121212'/%3E%3Ctext x='600' y='250' font-family='Arial Black' font-size='80' text-anchor='middle' fill='%23ffd700'%3ESTACKHOUSE GAMES%3C/text%3E%3Ctext x='600' y='320' font-family='Arial' font-size='36' text-anchor='middle' fill='%23ffffff'%3ELive Gaming Action%3C/text%3E%3Ctext x='600' y='380' font-family='Arial' font-size='48' text-anchor='middle' fill='%23ffd700'%3EWIN BIG!%3C/text%3E%3Crect x='200' y='450' width='100' height='100' fill='%23444' stroke='%23ffd700' stroke-width='3' rx='10'/%3E%3Ctext x='250' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E1%3C/text%3E%3Crect x='350' y='450' width='100' height='100' fill='%23ffd700' stroke='%23ffed4a' stroke-width='3' rx='10'/%3E%3Ctext x='400' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23000'%3E2%3C/text%3E%3Crect x='500' y='450' width='100' height='100' fill='%23444' stroke='%23ffd700' stroke-width='3' rx='10'/%3E%3Ctext x='550' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E3%3C/text%3E%3Crect x='650' y='450' width='100' height='100' fill='%2328a745' stroke='%2334ce57' stroke-width='3' rx='10'/%3E%3Ctext x='700' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E4%3C/text%3E%3Crect x='800' y='450' width='100' height='100' fill='%23444' stroke='%23ffd700' stroke-width='3' rx='10'/%3E%3Ctext x='850' y='515' font-family='Arial' font-size='36' text-anchor='middle' fill='%23fff'%3E5%3C/text%3E%3C/svg%3E" />
+  
+  <!-- Force refresh headers -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+      font-family: 'Arial', sans-serif; 
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%); 
+      color: #f1f1f1; 
+      text-align: center; 
+      min-height: 100vh; 
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* 🎰 ENHANCED BINGO MATRIX RAIN 🎲 */
+    .matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .casino-element {
+      position: absolute;
+      font-size: 28px;
+      color: #ffd700;
+      text-shadow: 0 0 15px #ffd700;
+      animation: casinoFall linear infinite;
+      opacity: 0.7;
+      font-weight: bold;
+    }
+    
+    @keyframes casinoFall {
+      0% { 
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { 
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    .casino-element.balls { color: #ff4757; text-shadow: 0 0 15px #ff4757; }
+    .casino-element.cards { color: #5352ed; text-shadow: 0 0 15px #5352ed; }
+    .casino-element.numbers { color: #2ed573; text-shadow: 0 0 15px #2ed573; }
+    .casino-element.money { color: #00d2d3; text-shadow: 0 0 15px #00d2d3; }
+    .casino-element.bingo { color: #ff6348; text-shadow: 0 0 20px #ff6348; }
+    
+    /* Main content needs higher z-index */
+    header, main, footer, .modal, .admin-dialog { position: relative; z-index: 10; }
+    
+    header { padding: 20px 0; background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .logo { max-width: 300px; height: auto; margin: 0 auto; display: block; }
+    footer { padding: 20px 0; background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%); color: #999; font-size: 0.9rem; margin-top: auto; }
+    
+    button, .button { 
+      background: linear-gradient(135deg, #333 0%, #444 50%, #333 100%); 
+      color: #fff; 
+      border: 2px solid #555; 
+      padding: 12px 20px; 
+      margin: 4px; 
+      cursor: pointer; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1); 
+      transition: all 0.2s ease; 
+    }
+    button:hover, .button:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.2); 
+      background: linear-gradient(135deg, #4a9eff 0%, #5aa7ff 50%, #4a9eff 100%); 
+    }
+    button:active, .button:active { 
+      transform: translateY(0); 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 2px 4px rgba(0,0,0,0.2); 
+    }
+    
+    #adminBtn { 
+      background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 50%, #ff6b35 100%); 
+      display: block; 
+      margin: 20px auto; 
+      font-size: 1.1rem; 
+      padding: 15px 30px; 
+    }
+    
+    /* 🧩 MULTI-PICK STYLES */
+    #multiPickBtn {
+      background: linear-gradient(135deg, #6f42c1 0%, #8a63d2 50%, #6f42c1 100%);
+      color: #fff;
+      border: 2px solid #8a63d2;
+      font-size: 1.1rem;
+      padding: 15px 30px;
+      margin: 10px;
+    }
+    
+    #multiPickBtn.active {
+      background: linear-gradient(135deg, #28a745 0%, #34ce57 50%, #28a745 100%);
+      border-color: #34ce57;
+      animation: multiPickGlow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes multiPickGlow {
+      from { box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3), 0 0 20px rgba(40, 167, 69, 0.2); }
+      to { box-shadow: 0 6px 12px rgba(40, 167, 69, 0.6), 0 0 30px rgba(40, 167, 69, 0.4); }
+    }
+    
+    .multi-pick-controls {
+      margin: 15px 0;
+      display: none;
+    }
+    
+    .multi-pick-controls.active {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .donation-display { 
+      background: linear-gradient(135deg, #2a5f2a 0%, #3a7f3a 100%); 
+      padding: 10px 20px; 
+      margin: 15px auto; 
+      border-radius: 10px; 
+      max-width: 400px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+      border: 2px solid #4a9f4a; 
+    }
+    .donation-amount { font-size: 1.4rem; font-weight: bold; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+    .wallet-address { font-size: 0.9rem; color: #ccc; margin-top: 5px; word-break: break-all; font-family: monospace; }
+    
+    .tabs { margin: 20px 0; }
+    .tab-panel { 
+      display: none; 
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); 
+      margin: 0 auto 20px auto; 
+      padding: 20px; 
+      border: 2px solid #333; 
+      border-radius: 10px; 
+      text-align: left; 
+      width: 90%; 
+      max-width: 600px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+    }
+    
+    .last-winners-section { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+    .last-winners-section h3 { margin: 0 0 15px 0; font-size: 1.2rem; color: #ffd700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    .last-winners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .winner-box { 
+      background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%); 
+      border: 2px solid #ffd700; 
+      border-radius: 8px; 
+      padding: 10px; 
+      text-align: center; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+      transition: all 0.2s ease; 
+    }
+    .winner-number { font-size: 0.9rem; font-weight: bold; color: #ffd700; margin-bottom: 2px; }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+      gap: 15px; 
+      max-width: 800px; 
+      margin: 30px auto; 
+      padding: 0 20px; 
+    }
+    
+    .box { 
+      background: linear-gradient(135deg, #444 0%, #555 50%, #444 100%); 
+      color: #fff; 
+      padding: 20px 10px; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      border: 2px solid #666; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1); 
+      transition: all 0.2s ease; 
+      min-height: 80px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+    }
+    
+    .box:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4); 
+      background: linear-gradient(135deg, #4a9eff 0%, #5aa7ff 50%, #4a9eff 100%); 
+    }
+    
+    .box.pending { 
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4a 50%, #ffd700 100%); 
+      color: #000; 
+      border-color: #ffed4a; 
+      animation: pulse 2s infinite; 
+    }
+    
+    .box.confirmed { 
+      background: linear-gradient(135deg, #28a745 0%, #34ce57 50%, #28a745 100%); 
+      color: #fff; 
+      border-color: #34ce57; 
+    }
+    
+    /* Multi-pick selection styles */
+    .box.selected-multi { 
+      background: linear-gradient(135deg, #6f42c1 0%, #8a63d2 50%, #6f42c1 100%); 
+      color: #fff; 
+      border-color: #8a63d2; 
+      transform: translateY(-3px) scale(1.05); 
+      box-shadow: 0 6px 12px rgba(111, 66, 193, 0.4), 0 0 20px rgba(111, 66, 193, 0.3); 
+      animation: multiPickPulse 1.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes multiPickPulse {
+      from { box-shadow: 0 6px 12px rgba(111, 66, 193, 0.4), 0 0 20px rgba(111, 66, 193, 0.3); }
+      to { box-shadow: 0 8px 16px rgba(111, 66, 193, 0.6), 0 0 25px rgba(111, 66, 193, 0.5); }
+    }
+    
+    .box.multi-pick-mode { 
+      cursor: pointer; 
+      transition: all 0.2s ease; 
+    }
+    
+    .box.multi-pick-mode:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3); 
+    }
+    
+    @keyframes pulse { 
+      0% { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 0 rgba(255, 215, 0, 0.7); } 
+      70% { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 10px rgba(255, 215, 0, 0); } 
+      100% { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 0 rgba(255, 215, 0, 0); } 
+    }
+    
+    .timer { font-size: 0.9rem; margin-top: 5px; font-weight: normal; }
+    
+    /* Status indicators positioned at bottom */
+    .status-indicators { 
+      position: fixed; 
+      bottom: 10px; 
+      left: 10px; 
+      right: 10px; 
+      display: flex; 
+      justify-content: space-between; 
+      pointer-events: none; 
+      z-index: 1000; 
+    }
+    .connection-status, .sync-status { 
+      background: #28a745; 
+      color: #fff; 
+      padding: 5px 10px; 
+      border-radius: 5px; 
+      font-size: 0.8rem; 
+      opacity: 0.8; 
+    }
+    .sync-status { background: #007bff; }
+    
+    .modal { 
+      display: none; 
+      position: fixed; 
+      z-index: 2000; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0,0,0,0.8); 
+      backdrop-filter: blur(5px); 
+    }
+    .modal-content { 
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); 
+      margin: 10% auto; 
+      padding: 30px; 
+      border-radius: 15px; 
+      width: 90%; 
+      max-width: 500px; 
+      border: 2px solid #444; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    }
+    .modal input { 
+      width: 100%; 
+      padding: 15px; 
+      margin: 10px 0; 
+      border: 2px solid #444; 
+      border-radius: 8px; 
+      background: #333; 
+      color: #fff; 
+      font-size: 1.1rem; 
+      font-weight: bold; 
+      text-align: center; 
+    }
+    .modal input:focus { 
+      outline: none; 
+      border-color: #4a9eff; 
+      box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); 
+    }
+    
+    /* Mode A Specific Styles */
+    .payment-methods-display { background: linear-gradient(135deg, #5f2a5f 0%, #7f3a7f 100%); border: 2px solid #9f4a9f; }
+    .box.pending.mode-a { animation: none; }
+    
+    /* Custom admin dialog styles */
+    .admin-dialog { 
+      position: fixed; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); 
+      border: 2px solid #ff6b35; 
+      border-radius: 15px; 
+      padding: 30px; 
+      z-index: 3000; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+      min-width: 300px; 
+    }
+    .admin-dialog input { 
+      width: 100%; 
+      padding: 15px; 
+      margin: 15px 0; 
+      border: 2px solid #444; 
+      border-radius: 8px; 
+      background: #333; 
+      color: #fff; 
+      font-size: 1.1rem; 
+      text-align: center; 
+    }
+    .admin-dialog button { margin: 5px; }
+    .admin-dialog-overlay { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0,0,0,0.8); 
+      z-index: 2999; 
+    }
+
+    /* Multi-payment instructions styling */
+    .multi-payment-instructions {
+      background: #444;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .payment-row {
+      background: #333;
+      border-radius: 6px;
+      padding: 10px;
+      margin: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    .payment-row-label {
+      font-weight: bold;
+      color: #ffd700;
+    }
+    
+    .payment-row-amount {
+      color: #fff;
+      font-weight: bold;
+    }
+    
+    @media (max-width: 768px) { 
+      .grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; padding: 0 10px; } 
+      .box { padding: 15px 5px; min-height: 70px; font-size: 0.9rem; } 
+      .logo { max-width: 250px; }
+      .modal-content { width: 95%; margin: 5% auto; padding: 20px; } 
+      .last-winners-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } 
+      .winner-box { padding: 8px; }
+      .winner-number { font-size: 0.8rem; }
+      .last-winners-section h3 { font-size: 1rem; }
+      .status-indicators { bottom: 5px; left: 5px; right: 5px; }
+      .connection-status, .sync-status { font-size: 0.7rem; padding: 4px 8px; }
+      #multiPickBtn { font-size: 1rem; padding: 12px 20px; }
+      .casino-element { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎰 ENHANCED BINGO MATRIX RAIN 🎲 -->
+  <div class="matrix-rain" id="matrixRain"></div>
+  
+  <!-- Status indicators moved to bottom -->
+  <div class="status-indicators">
+    <div class="connection-status" id="connectionStatus">🟢 Online</div>
+    <div class="sync-status" id="syncStatus">🕒 Syncing...</div>
+  </div>
+  
+  <header>
+    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/IMG_5103.PNG" alt="Stackhouse Games" class="logo" onerror="this.style.display='none'; document.getElementById('fallbackTitle').style.display='block';">
+    <h1 id="fallbackTitle" style="display: none; margin: 0; font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">🎮 Stackhouse Games</h1>
+  </header>
+  
+  <div class="donation-display" id="cryptoDisplay">
+    <div class="donation-amount">Donation Amount: $<span id="donationAmount">5.00</span> USD</div>
+    <div class="wallet-address">📍 <span id="walletDisplay">ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x</span></div>
+  </div>
+  
+  <div class="donation-display payment-methods-display" id="paymentDisplay" style="display: none;">
+    <div class="donation-amount">Donation Amount: $<span id="donationAmountModeA">5.00</span> USD</div>
+    <div style="margin-top: 8px; font-size: 1.1rem;">Methods: <span id="donationMethodsText">Venmo, CashApp, PayPal</span></div>
+  </div>
+  
+  <nav class="tabs">
+    <button class="tab-btn" onclick="toggleTab('wallet')">💼 Get Wallet</button>
+    <button class="tab-btn" onclick="toggleTab('howto')">🎮 How-To Play</button>
+    <button class="tab-btn" onclick="toggleTab('faq')">❓ FAQ & Rules</button>
+  </nav>
+  
+  <section id="wallet" class="tab-panel">
+    <h3>💼 Step 1: Get a Wallet</h3>
+    <p>To join our game and receive digital gifts, you'll need a crypto wallet that supports <strong>Litecoin (LTC)</strong>.</p>
+    <h4>📱 Recommended Wallets:</h4>
+    <ul>
+      <li><strong>Trust Wallet</strong> – Mobile only. Fast, simple, and supports LTC</li>
+      <li><strong>Exodus Wallet</strong> – Mobile/Desktop. User-friendly and reliable</li>
+    </ul>
+    <h4>⚠️ Important Warnings:</h4>
+    <p><strong>Do NOT send from crypto exchanges like Robinhood, Venmo, or PayPal BTC</strong> — they may not support withdrawals to LTC addresses.</p>
+    <h4>🌐 Why We Use Crypto:</h4>
+    <ul>
+      <li>No frozen accounts or "under review" delays</li>
+      <li>No arbitrary limits on sending or receiving</li>
+      <li>No confusion about processing times or hidden fees</li>
+    </ul>
+  </section>
+  
+  <section id="howto" class="tab-panel">
+    <h3>🎮 Step 2: How to Play</h3>
+    <ol>
+      <li><strong>Pick a Row:</strong> Click an available (gray) row to claim it.</li>
+      <li><strong>Enter Name:</strong> This will show on the live stream for fun & visibility.</li>
+      <li><strong>Send Donation:</strong> Follow instructions on the screen to send the LTC amount.</li>
+      <li><strong>Row Turns Green:</strong> That means your gift is locked in and ready!</li>
+    </ol>
+  </section>
+  
+  <section id="faq" class="tab-panel">
+    <h3>❓ Frequently Asked Questions</h3>
+    <p><strong>What if my LTC is late?</strong><br>If your row unlocks but your LTC still comes through, just send your transaction ID.</p>
+    <p><strong>Can I claim more than one row?</strong><br>Yes! Each row has its own timer and donation amount.</p>
+  </section>
+  
+  <div class="last-winners-section">
+    <h3>🏆 What Hit Last</h3>
+    <div class="last-winners-grid">
+      <div class="winner-box" id="winner1"><div class="winner-number">Row 1</div></div>
+      <div class="winner-box" id="winner2"><div class="winner-number">Row 7</div></div>
+      <div class="winner-box" id="winner3"><div class="winner-number">Row 12</div></div>
+    </div>
+  </div>
+  
+  <main>
+    <div id="tracker" class="grid"></div>
+    
+    <!-- 🧩 MULTI-PICK CONTROLS - Moved below grid -->
+    <div style="margin: 20px 0; text-align: center;">
+      <button id="multiPickBtn" onclick="toggleMultiPick()">
+        🧩 Multi-Pick: OFF
+      </button>
+      <div class="multi-pick-controls" id="multiPickControls">
+        <button onclick="confirmMultiPicks()" id="confirmPicksBtn" style="background: linear-gradient(135deg, #28a745 0%, #34ce57 50%, #28a745 100%); font-size: 1.1rem; padding: 15px 30px; opacity: 0.5;" disabled>
+          ✅ Confirm Picks (<span id="selectedCount">0</span>)
+        </button>
+        <button onclick="clearMultiPicks()" style="background: linear-gradient(135deg, #dc3545 0%, #e74c3c 50%, #dc3545 100%); margin-left: 10px;">
+          🗑️ Clear All
+        </button>
+      </div>
+    </div>
+    
+    <button id="adminBtn" onclick="openAdminPanel()">🔧 Admin Panel</button>
+  </main>
+  
+  <footer>© 2025 Stackhouse Games | 🔴 Live System | Players Online: <span id="onlineCount">1</span></footer>
+  
+  <!-- SINGLE ROW MODAL -->
+  <div id="nicknameModal" class="modal">
+    <div class="modal-content">
+      <h2>🎮 Claim Row <span id="modalRowNumber"></span></h2>
+      <p>Enter your Facebook name exactly:</p>
+      <input type="text" id="nicknameInput" placeholder="Enter Facebook name exactly..." maxlength="20" autocomplete="off">
+      <div style="margin-top: 20px;">
+        <button onclick="confirmClaim()">🚀 Claim Row</button>
+        <button onclick="closeModal()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MULTI-PICK MODAL -->
+  <div id="multiPickModal" class="modal">
+    <div class="modal-content" style="border: 2px solid #6f42c1;">
+      <h2>🧩 Claim Multiple Rows</h2>
+      <p>Enter your Facebook name for <strong><span id="multiPickCount">0</span> rows</strong>:</p>
+      <p style="font-size: 0.9rem; color: #8a63d2;">Selected rows: <span id="multiPickRowsList">None</span></p>
+      <input type="text" id="multiPickNicknameInput" placeholder="Enter Facebook name exactly..." maxlength="20" autocomplete="off">
+      <div style="margin-top: 20px;">
+        <button onclick="confirmMultiClaim()" style="background: linear-gradient(135deg, #6f42c1 0%, #8a63d2 50%, #6f42c1 100%);">🚀 Claim All Rows</button>
+        <button onclick="closeMultiPickModal()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SINGLE PAYMENT MODAL -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content" style="background: linear-gradient(135deg, #1a4a1a 0%, #2a6a6a 100%); border: 2px solid #4a9f4a;">
+      <h2>💰 Donation Instructions</h2>
+      <p><strong><span id="paymentNickname">Player</span></strong>, you've claimed <strong>Row <span id="paymentRowNumber">1</span></strong>!</p>
+      <div style="background: #333; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        <p style="margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700;"><strong>Send exactly:</strong></p>
+        <p style="margin: 0 0 15px 0; font-size: 1.4rem; font-weight: bold;">$<span id="paymentAmountUSD">5.01</span> USD</p>
+        <p style="margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700;"><strong>To this address:</strong></p>
+        <p style="margin: 0; font-family: monospace; font-size: 0.9rem; word-break: break-all; background: #222; padding: 10px; border-radius: 4px;" id="paymentWallet">ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x</p>
+      </div>
+      <div style="margin-top: 20px;"><button onclick="closePaymentModal()">👍 Got it!</button></div>
+    </div>
+  </div>
+
+  <!-- MULTI-PAYMENT MODAL FOR MODE B -->
+  <div id="multiPaymentModal" class="modal">
+    <div class="modal-content" style="background: linear-gradient(135deg, #1a4a1a 0%, #2a6a6a 100%); border: 2px solid #4a9f4a; max-width: 600px;">
+      <h2>💰 Multi-Row Payment Instructions</h2>
+      <p><strong><span id="multiPaymentNickname">Player</span></strong>, you've claimed <strong><span id="multiPaymentCount">3</span> rows</strong>!</p>
+      
+      <div style="background: #333; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        <p style="margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700;"><strong>⚠️ IMPORTANT: Send each amount separately!</strong></p>
+        <p style="margin: 0 0 15px 0; font-size: 0.9rem; color: #ccc;">Each row needs its own unique payment for detection:</p>
+        
+        <div class="multi-payment-instructions" id="multiPaymentInstructions">
+          <!-- Payment rows will be populated by JavaScript -->
+        </div>
+        
+        <p style="margin: 15px 0 10px 0; font-size: 1.1rem; color: #ffd700;"><strong>Send to this address:</strong></p>
+        <p style="margin: 0; font-family: monospace; font-size: 0.9rem; word-break: break-all; background: #222; padding: 10px; border-radius: 4px;" id="multiPaymentWallet">ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x</p>
+      </div>
+      <div style="margin-top: 20px;"><button onclick="closeMultiPaymentModal()">👍 Got it!</button></div>
+    </div>
+  </div>
+
+  <div id="modeASuccessModal" class="modal">
+    <div class="modal-content" style="background: linear-gradient(135deg, #1a4a1a 0%, #2a6a6a 100%); border: 2px solid #4a9f4a;">
+      <h2>🎉 Row Claimed Successfully!</h2>
+      <p><strong><span id="modeANickname">Player</span></strong>, you've claimed <strong>Row <span id="modeARowNumber">1</span></strong>!</p>
+      <div style="background: #333; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        <p style="margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700; text-align: center;">
+          💰 Donation Amount: $<span id="modeASuccessDonationAmount">5.00</span> USD
+        </p>
+        <p style="margin: 0 0 15px 0; font-size: 1.1rem; color: #ffd700; text-align: center;">
+          📋 Donation Methods:
+        </p>
+        <p style="margin: 0 0 15px 0; font-size: 1.2rem; font-weight: bold; text-align: center;" id="modeADonationMethods">
+          Venmo, CashApp, PayPal
+        </p>
+        <p style="margin: 0; font-size: 0.9rem; color: #ccc; text-align: center;">
+          📢 Mod will reach out with gifting method
+        </p>
+      </div>
+      <div style="margin-top: 20px;">
+        <button onclick="closeModeASuccessModal()">👍 Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Admin Dialog -->
+  <div id="adminDialogOverlay" class="admin-dialog-overlay" style="display: none;"></div>
+  <div id="adminDialog" class="admin-dialog" style="display: none;">
+    <h3 style="margin: 0 0 20px 0; color: #ff6b35;">🔧 Admin Access</h3>
+    <p style="margin: 0 0 15px 0;">Enter admin password:</p>
+    <input type="password" id="adminPasswordInput" placeholder="Password...">
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="submitAdminPassword()" style="background: #28a745;">✅ Login</button>
+      <button onclick="closeAdminDialog()" style="background: #dc3545;">❌ Cancel</button>
+    </div>
+  </div>
+
+  <div id="adminModal" class="modal">
+    <div class="modal-content" style="background: linear-gradient(135deg, #2a1a1a 0%, #3a2a2a 100%); border: 2px solid #ff6b35; max-height: 80vh; overflow-y: auto;">
+      <h2>🔧 Admin Panel</h2>
+      
+      <!-- Mode Toggle Section -->
+      <div style="margin: 15px 0; padding: 15px; background: #444; border-radius: 8px;">
+        <h4 style="margin: 0 0 15px 0; color: #4a9eff;">🔘 Game Mode</h4>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+          <button id="modeABtn" onclick="switchMode('A')" style="background: #28a745;">Mode A (Manual)</button>
+          <button id="modeBBtn" onclick="switchMode('BaseG')" style="background: #666;">Mode B (Crypto)</button>
+        </div>
+        <p style="margin: 10px 0 0 0; font-size: 0.9rem; color: #ccc;">Current Mode: <span id="currentMode">A (Manual)</span></p>
+        <p style="margin: 5px 0 0 0; font-size: 0.8rem; color: #ffd700;" id="syncIndicator">🔥 Changes sync to all users</p>
+      </div>
+
+      <!-- Donation Methods Section (Mode A only) -->
+      <div id="donationMethodsSection" style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">💰 Donation Methods (Mode A):</label>
+        <textarea id="adminDonationMethods" rows="2" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; resize: vertical; text-align: left; font-family: Arial;">Venmo, CashApp, PayPal</textarea>
+      </div>
+
+      <div style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Donation Amount ($):</label>
+        <input type="number" id="adminFee" step="1" min="1" value="5" style="width: 100%; text-align: left;">
+      </div>
+      <div style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Wallet Address:</label>
+        <input type="text" id="adminWallet" value="ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x" style="font-family: monospace; font-size: 0.9rem; width: 100%; text-align: left;">
+      </div>
+      
+      <div style="margin: 15px 0; text-align: left;">
+        <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Timer (minutes):</label>
+        <select id="adminTimer" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff;">
+          <option value="5">5 minutes</option>
+          <option value="10" selected>10 minutes</option>
+          <option value="15">15 minutes</option>
+        </select>
+      </div>
+      
+      <!-- Last Winners Admin Section -->
+      <div style="margin: 20px 0; padding: 15px; background: #444; border-radius: 8px;">
+        <h4 style="margin: 0 0 15px 0; color: #ffd700;">🏆 Update Last Winners</h4>
+        
+        <div style="margin: 10px 0;">
+          <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Winner 1:</label>
+          <input type="number" id="winner1Row" placeholder="Row #" min="1" max="15" value="1" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; text-align: center;">
+        </div>
+        
+        <div style="margin: 10px 0;">
+          <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Winner 2:</label>
+          <input type="number" id="winner2Row" placeholder="Row #" min="1" max="15" value="7" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; text-align: center;">
+        </div>
+        
+        <div style="margin: 10px 0;">
+          <label style="display: block; margin-bottom: 5px; color: #fff; font-weight: bold;">Winner 3:</label>
+          <input type="number" id="winner3Row" placeholder="Row #" min="1" max="15" value="12" style="width: 100%; padding: 10px; border: 2px solid #444; border-radius: 8px; background: #333; color: #fff; text-align: center;">
+        </div>
+        
+        <button onclick="updateWinners()">🏆 Update Winners</button>
+      </div>
+
+      <!-- Release Single Row Section -->
+      <div style="margin: 15px 0; padding: 15px; background: #444; border-radius: 8px;">
+        <h4 style="margin: 0 0 15px 0; color: #ff6b35;">🎯 Release Single Row</h4>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="number" id="releaseRowNumber" placeholder="Row #" min="1" max="15" style="width: 80px; text-align: center;">
+          <button onclick="releaseSingleRow()">🔓 Release Row</button>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button onclick="updateGlobalSettings()">💰 Update Settings</button>
+        <button onclick="updateWinners()">🏆 Update Winners</button>
+        <button onclick="manualConfirmRow()">✅ Manual Confirm Row</button>
+        <button onclick="resetAllRows()">🔄 Reset Game</button>
+        <button onclick="closeAdminModal()">❌ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  <script>
+    let serverTimeOffset = 0;
+    let ltcPrice = 88;
+    let gameData = { 
+      rows: {}, 
+      donationAmount: 5, 
+      walletAddress: 'ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x', 
+      timerMinutes: 10, 
+      mode: 'A', 
+      donationMethods: 'Venmo, CashApp, PayPal',
+      lastWinners: [{ row: '1' }, { row: '7' }, { row: '12' }] 
+    };
+    let currentRowBeingClaimed = null;
+    let activeTimers = new Map();
+    let isAdmin = false;
+    
+    // 🧩 MULTI-PICK VARIABLES
+    let multiPickMode = false;
+    let selectedRows = new Set();
+
+    // Admin passwords
+   
+
+    // 🎰 ENHANCED BINGO MATRIX RAIN SYSTEM 🎲
+    function createEnhancedMatrixRain() {
+      const matrixContainer = document.getElementById('matrixRain');
+      
+      // 🎯 BINGO-SPECIFIC SYMBOLS - Real bingo symbols
+      const bingoSymbols = {
+        balls: ['🔴', '🔵', '🟢', '🟠', '🟣', '⚫', '⚪'],
+        cards: ['🂡', '🂱', '🃁', '🃑', '🂮', '🃎', '🃞', '🂭', '🃋', '🂫'],
+        numbers: ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'],
+        money: ['💵', '💴', '💶', '💷', '💰', '💎'],
+        bingo: ['🎯', '🔥', '⚡', '✨', '💫', '🌟', '⭐']
+      };
+      
+      function createCasinoElement() {
+        const element = document.createElement('div');
+        const symbolTypes = Object.keys(bingoSymbols);
+        const randomType = symbolTypes[Math.floor(Math.random() * symbolTypes.length)];
+        const symbols = bingoSymbols[randomType];
+        
+        element.className = `casino-element ${randomType}`;
+        element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // Random position and timing
+        element.style.left = Math.random() * 100 + '%';
+        element.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        element.style.animationDelay = Math.random() * 2 + 's';
+        
+        matrixContainer.appendChild(element);
+        
+        // Remove element after animation
+        setTimeout(() => {
+          if (element.parentNode) {
+            element.parentNode.removeChild(element);
+          }
+        }, 6000);
+      }
+      
+      // Create initial elements
+      for (let i = 0; i < 12; i++) {
+        setTimeout(createCasinoElement, i * 120);
+      }
+      
+      // Continuous element creation - tighter timing
+      setInterval(createCasinoElement, 250);
+    }
+
+    function initializeFirebase() {
+      try {
+        const firebaseConfig = { 
+          apiKey: "AIzaSyBbZkTQUGeKkuhy3Q8B8xvb7aSAgKwpV2o", 
+          authDomain: "stackhouse-gaming.firebaseapp.com", 
+          databaseURL: "https://stackhouse-gaming-default-rtdb.firebaseio.com", 
+          projectId: "stackhouse-gaming", 
+          storageBucket: "stackhouse-gaming.appspot.com", 
+          messagingSenderId: "302478753290", 
+          appId: "1:302478753290:web:efc93e1bf33c401c3229f3", 
+          measurementId: "G-6K2HJ7RB6W" 
+        };
+        firebase.initializeApp(firebaseConfig);
+        window.database = firebase.database();
+        
+        // Listen for server time offset
+        firebase.database().ref(".info/serverTimeOffset").on("value", snap => { 
+          serverTimeOffset = snap.val() || 0; 
+          updateSyncStatus(); 
+        });
+        
+        // 🔥 SYNC GAME SETTINGS FROM FIREBASE
+        firebase.database().ref("gameSettings").on("value", snapshot => {
+          const settings = snapshot.val();
+          if (settings) {
+            // Update all game settings from Firebase
+            gameData.mode = settings.mode || 'A';
+            gameData.donationAmount = settings.donationAmount || 5;
+            gameData.walletAddress = settings.walletAddress || 'ltc1qxn8j9emw65cpa7kn98frgyrzf3ud5vumw26z7x';
+            gameData.donationMethods = settings.donationMethods || 'Venmo, CashApp, PayPal';
+            gameData.timerMinutes = settings.timerMinutes || 10;
+            gameData.lastWinners = settings.lastWinners || [{ row: '1' }, { row: '7' }, { row: '12' }];
+            
+            // Update displays for all users
+            updateModeDisplay();
+            updateLastWinners();
+            if (isAdmin) {
+              updateAdminModeDisplay();
+            }
+          } else {
+            // 🔥 FIRST TIME SETUP - SAVE DEFAULT SETTINGS TO FIREBASE
+            const defaultSettings = {
+              mode: gameData.mode,
+              donationAmount: gameData.donationAmount,
+              walletAddress: gameData.walletAddress,
+              donationMethods: gameData.donationMethods,
+              timerMinutes: gameData.timerMinutes,
+              lastWinners: gameData.lastWinners
+            };
+            firebase.database().ref("gameSettings").set(defaultSettings);
+          }
+        });
+        // 🔄 Listen for real-time row updates
+firebase.database().ref("gameRows").on("value", snapshot => {
+  gameData.rows = snapshot.val() || {};
+  updateDisplay();
+});
+        
+        window.hasFirebase = true;
+        initGame();
+      } catch (error) {
+        window.hasFirebase = false;
+        window.database = null;
+        updateSyncStatus(false);
+        initGame();
+      }
+    }
+
+    function updateSyncStatus(online = true) {
+      const syncStatus = document.getElementById('syncStatus');
+      if (online && serverTimeOffset !== undefined && window.hasFirebase) { 
+        syncStatus.textContent = '🕒 Synced'; 
+        syncStatus.style.background = '#28a745'; 
+      } else if (online && window.hasFirebase) { 
+        syncStatus.textContent = '🕒 Syncing...'; 
+        syncStatus.style.background = '#007bff'; 
+      } else { 
+        syncStatus.textContent = '🕒 Local Mode'; 
+        syncStatus.style.background = '#dc3545'; 
+      }
+    }
+
+    async function updateLTCPrice() {
+      try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=litecoin&vs_currencies=usd');
+        const data = await response.json();
+        ltcPrice = data.litecoin.usd;
+      } catch (error) { 
+        console.log('Price API failed, using fallback'); 
+      }
+    }
+
+    function initGame() {
+      buildGrid();
+      updateDisplay();
+      updateModeDisplay();
+      updateLTCPrice();
+      createEnhancedMatrixRain(); // Start the enhanced bingo rain!
+      setInterval(updateLTCPrice, 5 * 60 * 1000);
+      
+      // Set up all enter key listeners
+      setupEnterKeyListeners();
+    }
+
+    // 🔧 FIXED ENTER KEY LISTENERS
+    function setupEnterKeyListeners() {
+      // Single row nickname input
+      const nicknameInput = document.getElementById('nicknameInput');
+      if (nicknameInput) {
+        nicknameInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            confirmClaim();
+          }
+        });
+      }
+
+      // Multi-pick nickname input
+      const multiPickInput = document.getElementById('multiPickNicknameInput');
+      if (multiPickInput) {
+        multiPickInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            confirmMultiClaim();
+          }
+        });
+      }
+
+      // Admin password input
+      const adminInput = document.getElementById('adminPasswordInput');
+      if (adminInput) {
+        adminInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            submitAdminPassword();
+          }
+        });
+      }
+    }
+
+    function buildGrid() {
+      const tracker = document.getElementById('tracker');
+      tracker.innerHTML = '';
+      for (let i = 1; i <= 15; i++) {
+        const div = document.createElement('div');
+        div.className = 'box';
+        div.id = `row${i}`;
+        div.innerHTML = `<div>Row ${i}</div><div class="timer"></div>`;
+        div.addEventListener('click', () => {
+          if (multiPickMode) {
+            toggleRowSelection(i);
+          } else {
+            claimRow(i);
+          }
+        });
+        tracker.appendChild(div);
+      }
+    }
+
+    function updateDisplay() {
+      for (let i = 1; i <= 15; i++) {
+        const box = document.getElementById(`row${i}`);
+        const rowData = gameData.rows[i];
+        
+        // Reset classes
+        box.className = 'box';
+        
+        if (rowData) {
+          box.classList.add(rowData.status);
+          if (rowData.status === 'pending' && gameData.mode === 'A') {
+            box.classList.add('mode-a');
+          }
+          
+          const nickname = rowData.nickname || rowData.fbName || 'Anonymous';
+          const truncatedNickname = nickname.length > 10 ? nickname.substring(0, 10) + '...' : nickname;
+          box.innerHTML = `<div>Row ${i}</div><div style="font-size: 0.8rem; margin-top: 2px;">${truncatedNickname}</div><div class="timer"></div>`;
+          
+          // Start timer for pending rows in BaseG mode
+          if (rowData.status === 'pending' && rowData.expiresAt && gameData.mode === 'BaseG') {
+            startSyncedCountdown(box, i, rowData.expiresAt);
+          }
+        } else {
+          box.innerHTML = `<div>Row ${i}</div><div class="timer"></div>`;
+          
+          // Add multi-pick styling if in multi-pick mode and row is available
+          if (multiPickMode) {
+            box.classList.add('multi-pick-mode');
+          }
+          
+          // Maintain selection if in multi-pick mode
+          if (selectedRows.has(i)) {
+            box.classList.add('selected-multi');
+          }
+        }
+      }
+      
+      document.getElementById('onlineCount').textContent = Math.max(1, Object.keys(gameData.rows).length);
+    }
+
+    // 🧩 MULTI-PICK FUNCTIONS
+    function toggleMultiPick() {
+      multiPickMode = !multiPickMode;
+      const btn = document.getElementById('multiPickBtn');
+      const controls = document.getElementById('multiPickControls');
+      
+      if (multiPickMode) {
+        btn.textContent = '🧩 Multi-Pick: ON';
+        btn.classList.add('active');
+        controls.classList.add('active');
+        selectedRows.clear();
+        updateMultiPickCount();
+      } else {
+        btn.textContent = '🧩 Multi-Pick: OFF';
+        btn.classList.remove('active');
+        controls.classList.remove('active');
+        clearMultiPicks();
+      }
+      
+      updateDisplay();
+    }
+
+    function toggleRowSelection(rowNum) {
+      const box = document.getElementById(`row${rowNum}`);
+      
+      // Can't select claimed or pending rows
+      if (box.classList.contains('confirmed') || box.classList.contains('pending')) {
+        return;
+      }
+      
+      if (selectedRows.has(rowNum)) {
+        // Deselect
+        selectedRows.delete(rowNum);
+        box.classList.remove('selected-multi');
+      } else {
+        // Select
+        selectedRows.add(rowNum);
+        box.classList.add('selected-multi');
+      }
+      
+      updateMultiPickCount();
+    }
+
+    function updateMultiPickCount() {
+      const count = selectedRows.size;
+      document.getElementById('selectedCount').textContent = count;
+      
+      // Update confirm button state
+      const confirmBtn = document.getElementById('confirmPicksBtn');
+      if (count > 0) {
+        confirmBtn.disabled = false;
+        confirmBtn.style.opacity = '1';
+      } else {
+        confirmBtn.disabled = true;
+        confirmBtn.style.opacity = '0.5';
+      }
+    }
+
+    function clearMultiPicks() {
+      selectedRows.clear();
+      document.querySelectorAll('.selected-multi').forEach(box => {
+        box.classList.remove('selected-multi');
+      });
+      updateMultiPickCount();
+    }
+
+    function confirmMultiPicks() {
+      if (selectedRows.size === 0) return;
+      
+      // Show the multi-pick modal
+      const rowsList = Array.from(selectedRows).sort((a, b) => a - b).join(', ');
+      document.getElementById('multiPickCount').textContent = selectedRows.size;
+      document.getElementById('multiPickRowsList').textContent = `Rows ${rowsList}`;
+      document.getElementById('multiPickNicknameInput').value = '';
+      document.getElementById('multiPickModal').style.display = 'block';
+      setTimeout(() => document.getElementById('multiPickNicknameInput').focus(), 100);
+    }
+
+    function closeMultiPickModal() {
+      document.getElementById('multiPickModal').style.display = 'none';
+    }
+
+    function confirmMultiClaim() {
+      const nickname = document.getElementById('multiPickNicknameInput').value.trim();
+      if (!nickname || selectedRows.size === 0) return;
+
+      const successfulClaims = [];
+      const failedClaims = [];
+
+      // Check each selected row and claim if still available
+      selectedRows.forEach(rowNum => {
+        const box = document.getElementById(`row${rowNum}`);
+        
+        // Double-check availability (in case someone else claimed it)
+        if (!box.classList.contains('confirmed') && !box.classList.contains('pending') && !gameData.rows[rowNum]) {
+          
+          if (gameData.mode === 'A') {
+            const serverNow = Date.now() + serverTimeOffset;
+            gameData.rows[rowNum] = { 
+              nickname, 
+              fbName: nickname,
+              status: 'pending', 
+              claimedAt: serverNow,
+              claimedViaModeA: true
+            };
+            successfulClaims.push(rowNum);
+          } else {
+            // Mode B (Crypto)
+            const serverNow = Date.now() + serverTimeOffset;
+            const expiresAt = serverNow + (gameData.timerMinutes * 60 * 1000);
+            const donationAmountUSD = gameData.donationAmount + parseInt(rowNum) * 0.01;
+            const expectedLTC = donationAmountUSD / ltcPrice;
+            
+            gameData.rows[rowNum] = {
+              nickname: nickname,
+              status: 'pending',
+              claimedAt: serverNow,
+              expiresAt: expiresAt,
+              donationAmountUSD: donationAmountUSD,
+              expectedLTC: expectedLTC
+            };
+            successfulClaims.push(rowNum);
+firebase.database().ref("gameRows").set(gameData.rows);
+
+          }
+        } else {
+          failedClaims.push(rowNum);
+        }
+      });
+
+      closeMultiPickModal();
+      
+      // Update display
+      updateDisplay();
+      
+      // Clear selections
+      clearMultiPicks();
+      
+      // Show success/failure message
+      let message = '';
+      if (successfulClaims.length > 0) {
+        message += `✅ Successfully claimed rows: ${successfulClaims.sort((a, b) => a - b).join(', ')}\n`;
+      }
+      if (failedClaims.length > 0) {
+        message += `❌ Rows no longer available: ${failedClaims.sort((a, b) => a - b).join(', ')}`;
+      }
+      
+      alert(message);
+      
+      // Show payment instructions
+      if (gameData.mode === 'BaseG' && successfulClaims.length > 0) {
+        showMultiPaymentInstructions(successfulClaims, nickname);
+      } else if (gameData.mode === 'A' && successfulClaims.length > 0) {
+        // Show Mode A success for multiple rows
+        showModeASuccess(`${successfulClaims.length} rows (${successfulClaims.sort((a, b) => a - b).join(', ')})`, nickname);
+      }
+    }
+
+    // 💰 NEW MULTI-PAYMENT INSTRUCTIONS FOR MODE B
+    function showMultiPaymentInstructions(claimedRows, nickname) {
+      const sortedRows = claimedRows.sort((a, b) => a - b);
+      
+      document.getElementById('multiPaymentNickname').textContent = nickname;
+      document.getElementById('multiPaymentCount').textContent = claimedRows.length;
+      document.getElementById('multiPaymentWallet').textContent = gameData.walletAddress;
+      
+      // Build individual payment instructions
+      const instructionsContainer = document.getElementById('multiPaymentInstructions');
+      instructionsContainer.innerHTML = '';
+      
+      sortedRows.forEach(rowNum => {
+        const amount = (gameData.donationAmount + parseInt(rowNum) * 0.01).toFixed(2);
+        
+        const paymentRow = document.createElement('div');
+        paymentRow.className = 'payment-row';
+        paymentRow.innerHTML = `
+          <span class="payment-row-label">Row ${rowNum}:</span>
+          <span class="payment-row-amount">$${amount} USD</span>
+        `;
+        instructionsContainer.appendChild(paymentRow);
+      });
+      
+      document.getElementById('multiPaymentModal').style.display = 'block';
+    }
+
+    function closeMultiPaymentModal() {
+      document.getElementById('multiPaymentModal').style.display = 'none';
+    }
+
+    function updateModeDisplay() {
+      if (gameData.mode === 'A') {
+        document.getElementById('cryptoDisplay').style.display = 'none';
+        document.getElementById('paymentDisplay').style.display = 'block';
+        // Update Mode A donation amount display
+        document.getElementById('donationAmountModeA').textContent = gameData.donationAmount.toFixed(2);
+        // Clear ALL timers in Mode A
+        activeTimers.forEach(animationId => cancelAnimationFrame(animationId));
+        activeTimers.clear();
+        document.querySelectorAll('.timer').forEach(timer => timer.textContent = '');
+      } else {
+        document.getElementById('cryptoDisplay').style.display = 'block';
+        document.getElementById('paymentDisplay').style.display = 'none';
+        // Update Mode B donation amount display
+        document.getElementById('donationAmount').textContent = gameData.donationAmount.toFixed(2);
+        // Restart timers for any pending rows in Mode B
+        Object.keys(gameData.rows).forEach(rowNum => {
+          const row = gameData.rows[rowNum];
+          if (row.status === 'pending' && row.expiresAt) {
+            const box = document.getElementById(`row${rowNum}`);
+            if (box) {
+              startSyncedCountdown(box, parseInt(rowNum), row.expiresAt);
+            }
+          }
+        });
+      }
+      
+      // Update donation methods display
+      document.getElementById('donationMethodsText').textContent = gameData.donationMethods;
+    }
+
+    function startSyncedCountdown(box, rowNum, expiresAt) {
+      const timerEl = box.querySelector('.timer');
+      if (!timerEl) return;
+
+      // Clear any existing timer
+      if (activeTimers.has(rowNum)) {
+        cancelAnimationFrame(activeTimers.get(rowNum));
+      }
+
+      const countdown = () => {
+        // Use server-synced time instead of local time
+        const now = Date.now() + serverTimeOffset;
+        const diff = expiresAt - now;
+        
+        if (diff <= 0) {
+          // Don't expire confirmed rows!
+          if (gameData.rows[rowNum]?.status === 'confirmed') {
+            timerEl.textContent = "";
+            activeTimers.delete(rowNum);
+            return;
+          }
+          
+          // Only expire if still pending
+          timerEl.textContent = "00:00";
+          activeTimers.delete(rowNum);
+          delete gameData.rows[rowNum];
+          updateDisplay();
+          return;
+        }
+        
+        const minutes = String(Math.floor(diff / 60000)).padStart(2, '0');
+        const seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        timerEl.textContent = `${minutes}:${seconds}`;
+        
+        // Use requestAnimationFrame for smooth updates
+        const animationId = requestAnimationFrame(countdown);
+        activeTimers.set(rowNum, animationId);
+      };
+      
+      countdown();
+    }
+
+    function claimRow(rowNum) {
+      const box = document.getElementById(`row${rowNum}`);
+      if (box.classList.contains('confirmed') || box.classList.contains('pending')) return;
+      currentRowBeingClaimed = rowNum;
+      document.getElementById('modalRowNumber').textContent = rowNum;
+      document.getElementById('nicknameInput').value = '';
+      document.getElementById('nicknameModal').style.display = 'block';
+      setTimeout(() => document.getElementById('nicknameInput').focus(), 100);
+    }
+
+    function confirmClaim() {
+      const nickname = document.getElementById('nicknameInput').value.trim();
+      if (!nickname || !currentRowBeingClaimed) return;
+
+      if (gameData.mode === 'A') {
+        const serverNow = Date.now() + serverTimeOffset;
+        gameData.rows[currentRowBeingClaimed] = { 
+          nickname, 
+          fbName: nickname,
+          status: 'pending', 
+          claimedAt: serverNow,
+          claimedViaModeA: true
+        };
+        closeModal();
+        updateDisplay();
+        showModeASuccess(currentRowBeingClaimed, nickname);
+        currentRowBeingClaimed = null;
+      } else {
+        // Use server-synced time for claim timestamp and expiration
+        const serverNow = Date.now() + serverTimeOffset;
+        const expiresAt = serverNow + (gameData.timerMinutes * 60 * 1000);
+        
+        const donationAmountUSD = gameData.donationAmount + parseInt(currentRowBeingClaimed) * 0.01;
+        const expectedLTC = donationAmountUSD / ltcPrice;
+        
+        gameData.rows[currentRowBeingClaimed] = {
+          nickname: nickname,
+          status: 'pending',
+          claimedAt: serverNow,
+          expiresAt: expiresAt,
+          donationAmountUSD: donationAmountUSD,
+          expectedLTC: expectedLTC
+        };
+
+        closeModal();
+        showPaymentInstructions(currentRowBeingClaimed, nickname);
+        updateDisplay();
+        
+        console.log(`🎮 Row ${currentRowBeingClaimed} claimed by ${nickname} (${donationAmountUSD} USD = ${expectedLTC.toFixed(8)} LTC)`);
+      }
+    }
+
+    function closeModal() { document.getElementById('nicknameModal').style.display = 'none'; }
+
+    function showPaymentInstructions(rowNumber, nickname) {
+      const rowData = gameData.rows[rowNumber];
+      const amountUSD = rowData?.donationAmountUSD || gameData.donationAmount;
+      document.getElementById('paymentNickname').textContent = nickname;
+      document.getElementById('paymentRowNumber').textContent = rowNumber;
+      document.getElementById('paymentAmountUSD').textContent = amountUSD.toFixed(2);
+      document.getElementById('paymentWallet').textContent = gameData.walletAddress;
+      document.getElementById('paymentModal').style.display = 'block';
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+      currentRowBeingClaimed = null;
+    }
+
+    function showModeASuccess(rowNumber, nickname) {
+      document.getElementById('modeANickname').textContent = nickname;
+      document.getElementById('modeARowNumber').textContent = rowNumber;
+      document.getElementById('modeADonationMethods').textContent = gameData.donationMethods;
+      // Mode A uses flat donation amount (no row-based pricing)
+      document.getElementById('modeASuccessDonationAmount').textContent = gameData.donationAmount.toFixed(2);
+      document.getElementById('modeASuccessModal').style.display = 'block';
+    }
+
+    function closeModeASuccessModal() {
+      document.getElementById('modeASuccessModal').style.display = 'none';
+    }
+
+    function toggleTab(tabId) {
+      const panel = document.getElementById(tabId);
+      const isVisible = panel.style.display === 'block';
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      if (!isVisible) panel.style.display = 'block';
+    }
+
+    // Custom admin dialog functions
+    function openAdminPanel() {
+      document.getElementById('adminDialogOverlay').style.display = 'block';
+      document.getElementById('adminDialog').style.display = 'block';
+      document.getElementById('adminPasswordInput').value = '';
+      setTimeout(() => document.getElementById('adminPasswordInput').focus(), 100);
+    }
+
+   ✅ REPLACE WITH THIS FINAL SECURE FUNCTION BLOCK
+function submitAdminPassword() {
+  const password = document.getElementById('adminPasswordInput').value;
+  // Replace this placeholder email with the actual admin email you created in Firebase Auth.
+"  const ADMIN_EMAIL = ""mrchilds246@gmail.com"";"
+     
+"  // This is the secure part: Firebase checks the password against its database, not your code."
+"  firebase.auth().signInWithEmailAndPassword(ADMIN_EMAIL, password)"
+    .then((userCredential) => {
+      // Success! The user is now logged in as the admin.
+      isAdmin = true;
+      closeAdminDialog();
+      showAdminPanel();
+    })
+    .catch((error) => {
+"      // Failure! The password was wrong, or the user doesn't exist."
+"      // Since the admin is now logged in, they can write to the protected 'gameSettings' path."
+      alert('Invalid password');
+    });
+}
+
+    function closeAdminDialog() {
+      document.getElementById('adminDialogOverlay').style.display = 'none';
+      document.getElementById('adminDialog').style.display = 'none';
+    }
+
+    function showAdminPanel() {
+      isAdmin = true;
+      document.getElementById('adminFee').value = gameData.donationAmount;
+      document.getElementById('adminWallet').value = gameData.walletAddress;
+      document.getElementById('adminDonationMethods').value = gameData.donationMethods;
+      document.getElementById('adminTimer').value = gameData.timerMinutes;
+      
+      // Load current winners
+      for (let i = 0; i < 3; i++) {
+        const winner = gameData.lastWinners[i];
+        document.getElementById(`winner${i + 1}Row`).value = winner.row;
+      }
+      
+      updateAdminModeDisplay();
+      document.getElementById('adminModal').style.display = 'block';
+    }
+
+    function updateAdminModeDisplay() {
+      const modeABtn = document.getElementById('modeABtn');
+      const modeBBtn = document.getElementById('modeBBtn');
+      const currentMode = document.getElementById('currentMode');
+      const donationMethodsSection = document.getElementById('donationMethodsSection');
+      const syncIndicator = document.getElementById('syncIndicator');
+      
+      if (gameData.mode === 'A') {
+        modeABtn.style.background = '#28a745';
+        modeBBtn.style.background = '#666';
+        currentMode.textContent = 'A (Manual)';
+        donationMethodsSection.style.display = 'block';
+      } else {
+        modeABtn.style.background = '#666';
+        modeBBtn.style.background = '#28a745';
+        currentMode.textContent = 'BaseG (Crypto)';
+        donationMethodsSection.style.display = 'none';
+      }
+      
+      // Update sync indicator
+      if (syncIndicator) {
+        if (window.hasFirebase) {
+          syncIndicator.textContent = '🔥 Changes sync to all users';
+          syncIndicator.style.color = '#ffd700';
+        } else {
+          syncIndicator.textContent = '⚠️ Local mode only';
+          syncIndicator.style.color = '#ff6b35';
+        }
+      }
+    }
+
+    function switchMode(mode) {
+      if (!isAdmin) return;
+      gameData.mode = mode;
+      
+      // 🔥 SAVE MODE TO FIREBASE SO ALL USERS SEE THE CHANGE
+      if (window.hasFirebase) {
+        firebase.database().ref("gameSettings/mode").set(mode);
+        console.log(`🔥 Mode switched to ${mode} and synced to all users`);
+      } else {
+        console.log(`⚠️ Mode switched to ${mode} but only local (Firebase offline)`);
+      }
+      
+      updateModeDisplay();
+      updateAdminModeDisplay();
+    }
+
+    function updateGlobalSettings() {
+      if (!isAdmin) return;
+      const newAmount = parseFloat(document.getElementById('adminFee').value);
+      const newWallet = document.getElementById('adminWallet').value.trim();
+      const newDonationMethods = document.getElementById('adminDonationMethods').value.trim();
+      const newTimer = parseInt(document.getElementById('adminTimer').value);
+      
+      if (newAmount >= 1) gameData.donationAmount = newAmount;
+      if (newWallet) gameData.walletAddress = newWallet;
+      if (newDonationMethods) {
+        gameData.donationMethods = newDonationMethods;
+      }
+      gameData.timerMinutes = newTimer;
+      
+      // 🔥 SAVE ALL SETTINGS TO FIREBASE
+      if (window.hasFirebase) {
+        firebase.database().ref("gameSettings").update({
+          donationAmount: gameData.donationAmount,
+          walletAddress: gameData.walletAddress,
+          donationMethods: gameData.donationMethods,
+          timerMinutes: gameData.timerMinutes,
+          mode: gameData.mode
+        });
+      }
+      
+      // Update all displays
+      updateModeDisplay();
+      document.getElementById('walletDisplay').textContent = gameData.walletAddress;
+      alert('Settings updated and synced to all users!');
+    }
+
+    function updateWinners() {
+      if (!isAdmin) return;
+      
+      for (let i = 0; i < 3; i++) {
+        const rowInput = document.getElementById(`winner${i + 1}Row`);
+        gameData.lastWinners[i] = {
+          row: rowInput.value || (i + 1)
+        };
+      }
+      
+      // 🔥 SAVE WINNERS TO FIREBASE
+      if (window.hasFirebase) {
+        firebase.database().ref("gameSettings/lastWinners").set(gameData.lastWinners);
+      }
+      
+      updateLastWinners();
+      alert('Winners updated and synced to all users!');
+    }
+
+    function updateLastWinners() {
+      for (let i = 0; i < 3; i++) {
+        const winnerBox = document.getElementById(`winner${i + 1}`);
+        if (winnerBox && gameData.lastWinners[i]) {
+          const winner = gameData.lastWinners[i];
+          winnerBox.querySelector('.winner-number').textContent = `Row ${winner.row}`;
+        }
+      }
+    }
+
+    function manualConfirmRow() {
+      if (!isAdmin) return;
+      const rowNum = prompt('Enter row number to confirm (1-15):');
+      if (rowNum && gameData.rows[rowNum] && gameData.rows[rowNum].status === 'pending') {
+        gameData.rows[rowNum].status = 'confirmed';
+        if (activeTimers.has(parseInt(rowNum))) {
+          cancelAnimationFrame(activeTimers.get(parseInt(rowNum)));
+          activeTimers.delete(parseInt(rowNum));
+        }
+        updateDisplay();
+        alert(`Row ${rowNum} manually confirmed!`);
+      } else {
+        alert('Invalid row number or row not pending');
+      }
+    }
+
+    function releaseSingleRow() {
+      if (!isAdmin) return;
+      const rowNum = document.getElementById('releaseRowNumber').value;
+      if (!rowNum || rowNum < 1 || rowNum > 15) {
+        alert('Please enter a valid row number (1-15)');
+        return;
+      }
+      
+      delete gameData.rows[rowNum];
+      // Clear timer for this specific row
+      if (activeTimers.has(parseInt(rowNum))) {
+        cancelAnimationFrame(activeTimers.get(parseInt(rowNum)));
+        activeTimers.delete(parseInt(rowNum));
+      }
+      updateDisplay();
+      document.getElementById('releaseRowNumber').value = '';
+      alert(`Row ${rowNum} released successfully!`);
+    }
+
+    function resetAllRows() {
+      if (!isAdmin) return;
+      if (confirm('Reset entire game? This will clear all rows.')) {
+        gameData.rows = {};
+        // Clear all timers properly
+        activeTimers.forEach(animationId => cancelAnimationFrame(animationId));
+        activeTimers.clear();
+        updateDisplay();
+        alert('Game reset complete!');
+      }
+    }
+
+    function closeAdminModal() { 
+      document.getElementById('adminModal').style.display = 'none'; 
+    }
+
+    // Initialize everything when page loads
+    if (typeof firebase !== 'undefined') {
+      initializeFirebase();
+    } else { 
+      window.hasFirebase = false; 
+      initGame(); 
+    }
+
+    // Modal click-outside-to-close handlers
+    document.addEventListener('click', (e) => { 
+      if (e.target.classList.contains('modal')) { 
+        e.target.style.display = 'none'; 
+        if (e.target.id === 'nicknameModal') currentRowBeingClaimed = null; 
+        if (e.target.id === 'multiPickModal') closeMultiPickModal();
+        if (e.target.id === 'multiPaymentModal') closeMultiPaymentModal();
+      } 
+    });
+
+    // Close admin dialog when clicking overlay
+    document.getElementById('adminDialogOverlay').addEventListener('click', closeAdminDialog);
+  </script>
+</body>
+</html>
